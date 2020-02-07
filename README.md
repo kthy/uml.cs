@@ -3,11 +3,6 @@
 UML class diagram generator for C# code.
 
 [![Python 3](https://pyup.io/repos/github/kthy/uml.cs/python-3-shield.svg)](https://pyup.io/repos/github/kthy/uml.cs/)
-[![Build Status](https://travis-ci.org/kthy/uml.cs.svg?branch=master)](https://travis-ci.org/kthy/uml.cs)
-[![Codecov Status](https://codecov.io/gh/kthy/uml.cs/branch/master/graph/badge.svg)](https://codecov.io/gh/kthy/uml.cs)
-[![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=uml.cs&metric=alert_status)](https://sonarcloud.io/dashboard?id=plateypus-backend)
-[![Requirements Status](https://requires.io/github/kthy/uml.cs/requirements.svg?branch=master)](https://requires.io/github/kthy/uml.cs/requirements/?branch=master)
-[![Updates](https://pyup.io/repos/github/kthy/uml.cs/shield.svg)](https://pyup.io/repos/github/kthy/uml.cs/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
 ## Development environment setup
@@ -15,6 +10,12 @@ UML class diagram generator for C# code.
 Ubuntu on WSL:
 
 ```bash
+$ sudo apt install graphviz
+…
+The following NEW packages will be installed:
+  fonts-liberation graphviz libann0 libcdt5 libcgraph6 libgd3 libgts-0.7-5 libgts-bin libgvc6 libgvpr2 liblab-gamut1 libpathplan4
+0 upgraded, 12 newly installed, 0 to remove and 0 not upgraded.
+…
 $ which python
 /usr/bin/python
 $ `which python` -V
