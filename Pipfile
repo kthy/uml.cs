@@ -1,0 +1,21 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+bandit = "*"
+black = "==19.10b0"
+isort = "*"
+pylint = "*"
+rope = "*"
+
+[packages]
+click = "*"
+
+[requires]
+python_version = "3.6"
+
+[scripts]
+debug = "python -m pdb -c continue umldotcs/cli.py ./test/"
+lint = "python -m scripts.lint"
