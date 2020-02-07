@@ -31,8 +31,6 @@ if __name__ == "__main__":
 
         if black.returncode == 0:
             run_with_separator(
-                ["pylint", "--extension-pkg-whitelist=lxml.etree", "plateypus"]
+                ["pylint", "--extension-pkg-whitelist=lxml.etree", "umldotcs"]
             )
-            run_with_separator(
-                ["bandit", "--recursive", "--format", "txt", "plateypus"]
-            )
+            run_with_separator(["bandit", "--recursive", "--format", "txt", "umldotcs"])
