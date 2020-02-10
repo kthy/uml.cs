@@ -109,12 +109,12 @@ class UmlCreator:
             out.write(
                 """digraph AutoLER2UML {
 
-        graph [fontname = "Bahnschrift SemiBold", fontsize = 8]
-        edge  [fontname = "Bahnschrift", fontsize = 8]
-        node  [fontname = "Bahnschrift", fontsize = 8, shape = none, width=0, height=0, margin=0]
+    graph [fontname = "Bahnschrift SemiBold", fontsize = 8]
+    edge  [fontname = "Bahnschrift", fontsize = 8]
+    node  [fontname = "Bahnschrift", fontsize = 8, shape = none, width=0, height=0, margin=0]
 
-        label    = "LE34.AutoLER2 UML diagram"
-        labelloc = "t"\n"""
+    label    = "LE34.AutoLER2 UML diagram"
+    labelloc = "t"\n"""
             )
             for nsp, classes in namespaces.items():
                 out.write(f"\n    // {nsp}\n\n")
