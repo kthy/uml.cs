@@ -43,7 +43,7 @@ def create_uml(directory, output_gv, output_svg, repo_url):
 
 def exclude(path):
     """Return True if the path should be excluded."""
-    return search(r"AssemblyInfo\.cs|/(bin|obj)/(Debug|Release)/", path)
+    return search(r"AssemblyInfo\.cs|Test\.cs|/(bin|obj)/(Debug|Release)/", path)
 
 
 def zip_namespaces(nsp):
