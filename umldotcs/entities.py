@@ -114,9 +114,11 @@ class UmlEntity(ABC):
         label = <<TABLE {self.repo_link}BGCOLOR="{self.bgcolor}" BORDER="1" CELLBORDER="0" CELLSPACING="0">
                     <TR><TD PORT="name" COLSPAN="2">{self.display_name()}</TD></TR>\n"""
         if self.fields or self.methods:
-            dot += f"""{indent}    <HR/>\n{linesep.join([f.to_dot() for f in self.fields]) or empty_row}
-    {indent}<HR/>\n{linesep.join([m.to_dot() for m in self.methods]) or empty_row}"""
-        dot += f"""\n{indent}</TABLE>>\n    ]\n"""
+            fields = linesep.join([f.to_dot() for f in self.fields]) or empty_row
+            dot += f"{indent}    <HR/>\n{fields}\n"
+            methods = linesep.join([m.to_dot() for m in self.methods]) or empty_row
+            dot += f"{indent}    <HR/>\n{methods}\n"
+        dot += f"""{indent}</TABLE>>\n    ]\n"""
         return dot
 
 
