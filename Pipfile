@@ -17,5 +17,5 @@ click = "*"
 python_version = "3.6"
 
 [scripts]
-debug = "python -m pdb -c continue umldotcs/cli.py ./test/"
+debug = "python -m pdb -c continue umldotcs/__main__.py ./test/ -o debug.gv"
 lint = "python -m scripts.lint"
