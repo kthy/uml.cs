@@ -5,8 +5,8 @@ from subprocess import run
 
 def run_with_separator(args):
     """Print a horizontal rule to console and run a subprocess."""
-    print("=" * 80)
-    return run(args)
+    print("\n", "=" * 80)
+    return run(args, check=False)
 
 
 if __name__ == "__main__":
