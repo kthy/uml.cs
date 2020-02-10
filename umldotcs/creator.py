@@ -87,7 +87,7 @@ class UmlCreator:
                     if not tokens:
                         continue
 
-                    if self.re_entity.search(line):
+                    if ent is None and self.re_entity.search(line):
                         ent = self.extract_object(nsp, tokens)
                     elif ent:
                         self.cur_attrs = ent.parse_tokens(tokens, self.cur_attrs)
