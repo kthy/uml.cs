@@ -5,7 +5,7 @@ from subprocess import run
 
 def run_with_separator(args):
     """Print a horizontal rule to console and run a subprocess."""
-    print("\n", "=" * 80)
+    print("\n", "=" * 80, "\n")
     return run(args, check=False)
 
 
