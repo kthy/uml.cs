@@ -13,7 +13,7 @@ except (ImportError, ModuleNotFoundError):
 BOM = "\ufeff"
 AZAZ = "A-Za-z"
 
-ATTRIB = f"^\\s\\[([{AZAZ}]+)"
+ATTRIB = f"^\\s*\\[([{AZAZ}]+)"
 ENTITY = "|".join(MetaEntity.as_str_list())
 IDENTI = f"[{AZAZ}_][{AZAZ}0-9._-]+"
 
