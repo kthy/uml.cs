@@ -1,0 +1,19 @@
+dist: xenial
+sudo: required
+language: python
+python: 
+    - '3.6'
+    - '3.7'
+    - '3.8'
+git:
+    depth: false
+cache: pip
+install:
+    - pip install codecov
+    - pip install pipenv
+    - pipenv sync
+script:
+    - python -m umldotcs ./tests/sln/
+    - python -m pytest --cov-branch --cov-report term-missing:skip-covered --cov-report xml --cov=umldotcs
+after_success:
+    - codecov
