@@ -12,6 +12,8 @@ rope = "*"
 
 [packages]
 click = "*"
+pytest = "*"
+pytest-cov = "*"
 
 [requires]
 python_version = "3.6"
@@ -19,3 +21,4 @@ python_version = "3.6"
 [scripts]
 debug = "python -m pdb -c continue umldotcs/__main__.py ./test/ -o debug.gv"
 lint = "python -m scripts.lint"
+test = "python -m pytest --cov-branch --cov-report term-missing:skip-covered --cov=umldotcs"
