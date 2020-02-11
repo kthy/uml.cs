@@ -60,6 +60,14 @@ class UmlEntity(ABC):
         title = f'TITLE="{self.name}.cs @ {base_url}"'
         self.repo_link = " ".join([href, target, title])
 
+    def is_abstract(self):
+        """Return True if this entity is abstract."""
+        return Modifier.ABSTRACT in self.modifiers
+
+    def is_static(self):
+        """Return True if this entity is static."""
+        return Modifier.STATIC in self.modifiers
+
     @staticmethod
     def parse_entity(tokens):
         """Parse tokens. Return entity and leftover tokens."""
@@ -142,14 +150,6 @@ class UmlClass(UmlEntity):
         if self.is_static():
             dname = f"<U>{dname}</U>"
         return dname
-
-    def is_abstract(self):
-        """Return True if this Class is abstract."""
-        return Modifier.ABSTRACT in self.modifiers
-
-    def is_static(self):
-        """Return True if this Class is abstract."""
-        return Modifier.STATIC in self.modifiers
 
 
 class UmlEnum(UmlEntity):
