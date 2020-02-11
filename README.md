@@ -1,4 +1,4 @@
-# uml.cs
+# Uml.cs
 
 UML class diagram generator for C# code.
 
@@ -6,6 +6,7 @@ UML class diagram generator for C# code.
 [![Codecov Status](https://codecov.io/gh/kthy/uml.cs/branch/master/graph/badge.svg)](https://codecov.io/gh/kthy/uml.cs)
 [![Requirements Status](https://requires.io/github/kthy/uml.cs/requirements.svg?branch=master)](https://requires.io/github/kthy/uml.cs/requirements/?branch=master)
 [![Updates](https://pyup.io/repos/github/kthy/uml.cs/shield.svg)](https://pyup.io/repos/github/kthy/uml.cs/)
+[![Conventional commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-blue.svg)](https://www.conventionalcommits.org/en/v1.0.0/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
 ## Development environment setup
