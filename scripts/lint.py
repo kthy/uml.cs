@@ -32,3 +32,4 @@ if __name__ == "__main__":
         if BLACK.returncode == 0:
             run_with_separator(["pylint", "--extension-pkg-whitelist=lxml.etree", "umldotcs"])
             run_with_separator(["bandit", "--recursive", "--format", "txt", "umldotcs"])
+            run_with_separator(["travis", "lint"])

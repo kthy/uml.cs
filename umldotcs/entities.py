@@ -18,6 +18,7 @@ CURLY = "{"
 class UmlEntity(ABC):
     """An abstract UML entity."""
 
+    # pylint: disable=too-many-instance-attributes
     def __init__(self, tokens, **kwargs):
         self.fields = []
         self.methods = []
