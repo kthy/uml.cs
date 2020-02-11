@@ -1,0 +1,38 @@
+"""Test the CLI."""
+
+from umldotcs.cli import NAMESPACES, exclude, zip_namespaces
+
+
+def test_exclude():
+    """Test cli.exclude()."""
+    should_be_excluded = [
+        "./tests/sln/Uml.Cs.Dll/bin/Debug/netcoreapp2.1/UmlCsDll.cs",
+        "./tests/sln/Uml.Cs.Dll/obj/Debug/netcoreapp2.1/UmlCsDll.cs",
+        "./tests/sln/Uml.Cs.Dll/bin/Release/netcoreapp2.1/UmlCsDll.cs",
+        "./tests/sln/Uml.Cs.Dll/obj/Release/netcoreapp2.1/UmlCsDll.cs",
+        "./tests/sln/Uml.Cs.App/Properties/AssemblyInfo.cs",
+        "./tests/sln/Uml.Cs.Dll.Test/UmlCsDllTest.cs",
+    ]
+    should_be_included = [
+        "./tests/sln/Uml.Cs.App/Program.cs",
+        "./tests/sln/Uml.Cs.Dll/ICanBeImplemented.cs",
+        "./tests/sln/Uml.Cs.Dll/SubUmlCsDll.cs",
+        "./tests/sln/Uml.Cs.Dll/UmlCsDll.cs",
+        "./tests/sln/Uml.Cs.Dll/UmlEnum.cs",
+    ]
+    assert any([exclude(p) for p in should_be_excluded])
+    assert not any([exclude(p) for p in should_be_included])
+
+
+def test_zip_namespaces():
+    """Test cli.zip_namespaces."""
+    assert NAMESPACES == {}
+    nsp_inner = {"Inner.Space": [1, 2, 3]}
+    zip_namespaces(nsp_inner)
+    assert NAMESPACES == nsp_inner
+    nsp_outer1 = {"Outer.Space": [4, 5, 6]}
+    nsp_outer2 = {"Outer.Space": [7, 8, 9]}
+    zip_namespaces(nsp_outer1)
+    zip_namespaces(nsp_outer2)
+    nsp_merged = {"Inner.Space": [1, 2, 3], "Outer.Space": [4, 5, 6, 7, 8, 9]}
+    assert NAMESPACES == nsp_merged
