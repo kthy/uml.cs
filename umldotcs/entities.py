@@ -34,7 +34,7 @@ class UmlEntity(ABC):
         self.modifiers = kwargs.get("modifiers", [])
 
         self.implements = [t.strip(", ") for t in tokens[1:]] if tokens else []
-        self.implements = [sub("<(.*)>$", r"&lt;\1&gt;", i) for i in self.implements]
+        self.implements = [sub("<(.*)>$", r"_\1_", i) for i in self.implements]
 
     def __repr__(self):
         """A representation of the entity."""
