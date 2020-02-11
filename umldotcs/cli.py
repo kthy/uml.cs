@@ -25,7 +25,7 @@ RELATIONS = []
 def create_uml(directory, output_gv, output_svg, repo_url):
     """Process all .cs files in directory and its sub-directories."""
     files = [f for f in glob(join(directory, "**", "*.cs"), recursive=True) if not exclude(f)]
-    print(f"Processing {files}:")
+    print(f"Processing {files}")
     for file_path in files:
         uml_creator = UmlCreator(file_path, repo_url)
         nsp, rel = uml_creator.process_file()
