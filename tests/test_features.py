@@ -27,10 +27,7 @@ def test_parse_access():
     assert Access.parse_access(tail) == (Access.INTERNAL, tail)
     assert Access.parse_access(["internal"] + tail) == (Access.INTERNAL, tail)
     assert Access.parse_access(["private"] + tail) == (Access.PRIVATE, tail)
-    assert Access.parse_access(["private", "protected"] + tail) == (
-        Access.PRIVATEPROTECTED,
-        tail,
-    )
+    assert Access.parse_access(["private", "protected"] + tail) == (Access.PRIVATEPROTECTED, tail,)
     assert Access.parse_access(["protected"] + tail) == (Access.PROTECTED, tail)
     assert Access.parse_access(["protected", "internal"] + tail) == (
         Access.PROTECTEDINTERNAL,
@@ -43,16 +40,20 @@ def test_field_to_dot_with_one_attr():
     """Test Field.to_dot() with a single attribute."""
     field = Field(["XmlText"], Access.PUBLIC, None, "string", "Content")
     dot = field.to_dot()
-    assert dot == '                    <TR><TD>+Content : string</TD><TD ALIGN="RIGHT">[XmlText]</TD></TR>'
+    assert (
+        dot
+        == '                    <TR><TD>+Content : string</TD><TD ALIGN="RIGHT">[XmlText]</TD></TR>'
+    )
 
 
 def test_field_to_dot_with_more_than_one_attr():
     """Test Field.to_dot() with more than one attribute."""
-    field = Field(
-        ["One", "Two"], Access.INTERNAL, [Modifier.STATIC], "string", "Content"
-    )
+    field = Field(["One", "Two"], Access.INTERNAL, [Modifier.STATIC], "string", "Content")
     dot = field.to_dot()
-    assert dot == '                    <TR><TD><U>~Content : string</U></TD><TD ALIGN="RIGHT">[One]<BR/>[Two]</TD></TR>'
+    assert (
+        dot
+        == '                    <TR><TD><U>~Content : string</U></TD><TD ALIGN="RIGHT">[One]<BR/>[Two]</TD></TR>'
+    )
 
 
 def test_field_to_dot_without_attrs():
@@ -71,14 +72,20 @@ def test_method_to_dot_with_one_attr():
     """Test Method.to_dot() with a single attribute."""
     method = Method(["XmlElement"], Access.PUBLIC, [], "bool", "Equals(object o)")
     dot = method.to_dot()
-    assert dot == '                    <TR><TD>+Equals(object o) : bool</TD><TD ALIGN="RIGHT">[XmlElement]</TD></TR>'
+    assert (
+        dot
+        == '                    <TR><TD>+Equals(object o) : bool</TD><TD ALIGN="RIGHT">[XmlElement]</TD></TR>'
+    )
 
 
 def test_method_to_dot_without_attrs():
     """Test Method.to_dot() without attributes."""
     method = Method([], Access.PUBLIC, [Modifier.STATIC], "string", "«cast»(Measure m)")
     dot = method.to_dot()
-    assert dot == '                    <TR><TD COLSPAN="2"><U>+«cast»(Measure m) : string</U></TD></TR>'
+    assert (
+        dot
+        == '                    <TR><TD COLSPAN="2"><U>+«cast»(Measure m) : string</U></TD></TR>'
+    )
 
 
 def test_modifier_class_modifiers():

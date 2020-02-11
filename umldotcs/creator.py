@@ -51,11 +51,7 @@ class UmlCreator:
         entity, tokens = UmlEntity.parse_entity(tokens)
 
         kwargs = dict(
-            nsp=nsp,
-            access=access,
-            attrs=attrs,
-            modifiers=modifiers,
-            repo_url=self.repo_url,
+            nsp=nsp, access=access, attrs=attrs, modifiers=modifiers, repo_url=self.repo_url,
         )
 
         self.cur_attrs = []
@@ -98,9 +94,7 @@ class UmlCreator:
         if nsp is None:
             raise RuntimeError(f"No namespace found in {self.path}")
         if ent is None:
-            raise RuntimeError(
-                f"No class, enum, struct or interface found in {self.path}"
-            )
+            raise RuntimeError(f"No class, enum, struct or interface found in {self.path}")
         return {nsp: [ent]}, ent.relations_to_dot()
 
     @staticmethod

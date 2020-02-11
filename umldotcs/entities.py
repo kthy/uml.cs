@@ -86,9 +86,7 @@ class UmlEntity(ABC):
             tokens = tokens[: tokens.index(ARROW)]
         signature = " ".join(tokens)
         if "(" in signature:
-            self.methods.append(
-                Method(attrs, access, modifiers, return_type, signature)
-            )
+            self.methods.append(Method(attrs, access, modifiers, return_type, signature))
         else:
             self.fields.append(Field(attrs, access, modifiers, return_type, signature))
         return []
