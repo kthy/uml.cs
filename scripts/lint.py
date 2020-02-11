@@ -10,7 +10,7 @@ def run_with_separator(args):
 
 
 if __name__ == "__main__":
-    isort = run_with_separator(
+    ISORT = run_with_separator(
         [
             "isort",
             "--apply",
@@ -26,11 +26,9 @@ if __name__ == "__main__":
         ]
     )
 
-    if isort.returncode == 0:
-        black = run_with_separator(["black", "."])
+    if ISORT.returncode == 0:
+        BLACK = run_with_separator(["black", "-l100", "-tpy36", "."])
 
-        if black.returncode == 0:
-            run_with_separator(
-                ["pylint", "--extension-pkg-whitelist=lxml.etree", "umldotcs"]
-            )
+        if BLACK.returncode == 0:
+            run_with_separator(["pylint", "--extension-pkg-whitelist=lxml.etree", "umldotcs"])
             run_with_separator(["bandit", "--recursive", "--format", "txt", "umldotcs"])
