@@ -9,6 +9,7 @@ namespace Uml.Cs.App
         {
             Console.WriteLine("Hello World!");
             var u = new UmlCsDll("Foo");
+            u.IsValid();
         }
     }
 }
