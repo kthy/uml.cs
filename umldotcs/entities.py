@@ -38,7 +38,8 @@ class UmlEntity(ABC):
     def __repr__(self):
         """A representation of the entity."""
         mods = " " * bool(self.modifiers) + " ".join([m.value for m in self.modifiers])
-        return f"{self.access.value}{mods} class {self.name}"
+        typ = self.__class__.__name__[3:].lower()
+        return f"{self.access.value}{mods} {typ} {self.name}"
 
     def __str__(self):
         """A string representation of the entity suitable for printing."""
@@ -68,7 +69,6 @@ class UmlEntity(ABC):
 
     def parse_tokens(self, tokens, attrs):
         """Parse line for fields and methods."""
-        # print(tokens)
         try:
             access = Access(tokens[0])
             del tokens[0]
@@ -76,7 +76,7 @@ class UmlEntity(ABC):
             return attrs
         modifiers, tokens = Modifier.parse_modifiers(tokens)
         return_type = tokens[0]
-        if return_type == self.name:
+        if return_type.startswith(self.name + "("):
             return_type = "«Create»"
         else:
             del tokens[0]
