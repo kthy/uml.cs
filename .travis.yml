@@ -13,6 +13,7 @@ install:
     - pip install pipenv
     - pipenv sync
 script:
+    - pytest --version
     - python -m umldotcs -o tests_sln.gv ./tests/sln/
     - python -m pytest --cov-branch --cov-report term-missing:skip-covered --cov-report xml --cov=umldotcs
 after_success:
