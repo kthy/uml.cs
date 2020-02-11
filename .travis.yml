@@ -17,6 +17,7 @@ script:
 jobs:
   include:
     - stage: analysis
+      if: branch = master
       before_install:
         - pip install codecov
         - pip install pipenv
