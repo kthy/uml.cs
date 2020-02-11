@@ -19,7 +19,7 @@ pytest-cov = "*"
 python_version = "3.6"
 
 [scripts]
-debug = "python -m pdb -c continue umldotcs/__main__.py ./test/ -o debug.gv"
+debug = "python -m pdb -c continue umldotcs/__main__.py ./tests/sln/ -o debug.gv"
 githook_pre_commit = "black --line-length 100 --target-version py36 --quiet --check ."
 lint = "python -m scripts.lint"
 test = "python -m pytest --cov-branch --cov-report term-missing:skip-covered --cov=umldotcs"
