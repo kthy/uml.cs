@@ -7,4 +7,4 @@ exclude_lines =
     except .ImportError, ModuleNotFoundError.:
     if __name__ == .__main__.:
     ^\s*"""
-fail_under = 42
+fail_under = 60
