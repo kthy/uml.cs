@@ -8,12 +8,12 @@ bandit = "*"
 black = "==19.10b0"
 isort = "*"
 pylint = "*"
+pytest-cov = "*"
 rope = "*"
 
 [packages]
 click = "*"
 pytest = "*"
-pytest-cov = "*"
 
 [requires]
 python_version = "3.6"

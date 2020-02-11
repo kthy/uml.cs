@@ -6,7 +6,7 @@ import re
 try:
     from entities import UmlClass, UmlEntity, UmlEnum, UmlInterface, UmlStruct
     from features import Access, MetaEntity, Modifier
-except (ImportError, ModuleNotFoundError):  # pragma: no cover
+except (ImportError, ModuleNotFoundError):
     from umldotcs.entities import UmlClass, UmlEntity, UmlEnum, UmlInterface, UmlStruct
     from umldotcs.features import Access, MetaEntity, Modifier
 

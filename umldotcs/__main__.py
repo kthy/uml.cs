@@ -4,8 +4,8 @@
 
 try:
     from cli import create_uml
-except (ImportError, ModuleNotFoundError):  # pragma: no cover
+except (ImportError, ModuleNotFoundError):
     from umldotcs.cli import create_uml
 
-if __name__ == "__main__":  # pragma: no cover
+if __name__ == "__main__":
     create_uml()  # pylint: disable=no-value-for-parameter
