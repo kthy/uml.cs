@@ -24,10 +24,12 @@ jobs:
       install:
         - pipenv sync
         - pipenv install pytest_cov # argh!
+        - pipenv install 'black==19.10b0'
       addons:
         sonarcloud:
           organization: kthy
       script:
+        - pipenv run black_travis
         - python -m pytest --cov-branch --cov-report term-missing:skip-covered --cov-report xml --cov=umldotcs tests/
       after_success:
         - codecov
