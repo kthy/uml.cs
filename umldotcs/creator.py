@@ -30,15 +30,17 @@ class UmlCreator:
         self.path = path
         self.repo_url = repo_url
 
-    def extract_attribute(self, line):
+    @classmethod
+    def extract_attribute(cls, line):
         """Extract an attribute from a line."""
-        match = self.re_attribute.search(line)
+        match = cls.re_attribute.search(line)
         return None if match is None else match.group(1)
 
-    def extract_namespace(self, line):
+    @classmethod
+    def extract_namespace(cls, line):
         """Extract the namespace from a line.
         Return None if no namespace found."""
-        match = self.re_namespace.match(line)
+        match = cls.re_namespace.match(line)
         return None if match is None else match.group(1)
 
     def extract_object(self, nsp, tokens):
