@@ -3,6 +3,10 @@
 UML class diagram generator for C# code.
 
 [![Python 3](https://pyup.io/repos/github/kthy/uml.cs/python-3-shield.svg)](https://pyup.io/repos/github/kthy/uml.cs/)
+[![Build Status](https://travis-ci.org/kthy/uml.cs.svg?branch=master)](https://travis-ci.org/kthy/uml.cs)
+[![Codecov Status](https://codecov.io/gh/kthy/uml.cs/branch/master/graph/badge.svg)](https://codecov.io/gh/kthy/uml.cs)
+[![Requirements Status](https://requires.io/github/kthy/uml.cs/requirements.svg?branch=master)](https://requires.io/github/kthy/uml.cs/requirements/?branch=master)
+[![Updates](https://pyup.io/repos/github/kthy/uml.cs/shield.svg)](https://pyup.io/repos/github/kthy/uml.cs/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
 ## Development environment setup
