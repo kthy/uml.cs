@@ -19,8 +19,9 @@ pytest = "*"
 python_version = "3.6"
 
 [scripts]
-black_travis = "black --line-length 100 --target-version py36 --check ."
+black_ci = "black --line-length 100 --target-version py36 --check ."
+black_git = "black --line-length 100 --target-version py36 --quiet --check ."
+check = "python -m umldotcs -l \"Check UML diagram\" -o ./gv/check.gv -u https://github.com/kthy/uml.cs/blob/master/tests/sln ./tests/sln/"
 debug = "python -m pdb -c continue umldotcs/__main__.py -l \"Debug Diagram\" -o debug.gv tests/sln/"
-githook_pre_commit = "black --line-length 100 --target-version py36 --quiet --check ."
 lint = "python -m scripts.lint"
 test = "python -m pytest --cov-branch --cov-report term-missing:skip-covered --cov=umldotcs"

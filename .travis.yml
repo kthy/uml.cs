@@ -29,7 +29,7 @@ jobs:
         sonarcloud:
           organization: kthy
       script:
-        - pipenv run black_travis
+        - pipenv run black_ci
         - python -m pytest --cov-branch --cov-report term-missing:skip-covered --cov-report xml --cov=umldotcs tests/
       after_success:
         - codecov
