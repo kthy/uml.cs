@@ -28,6 +28,7 @@ class UmlCreator:
     def __init__(self, path, repo_url=None):
         self.cur_attrs = []
         self.path = path
+        self.nsp = None
         self.repo_url = repo_url
 
     @classmethod
@@ -36,14 +37,13 @@ class UmlCreator:
         match = cls.re_attribute.search(line)
         return None if match is None else match.group(1)
 
-    @classmethod
-    def extract_namespace(cls, line):
-        """Extract the namespace from a line.
-        Return None if no namespace found."""
-        match = cls.re_namespace.match(line)
-        return None if match is None else match.group(1)
+    def extract_namespace(self, line):
+        """Extract the namespace from a line into self.nsp.
+        Set self.nsp to None if no namespace found."""
+        match = self.re_namespace.match(line)
+        self.nsp = None if match is None else match.group(1)
 
-    def extract_object(self, nsp, tokens):
+    def extract_object(self, tokens):
         """Extract a class or interface name from a line."""
         attrs = self.cur_attrs
         access, tokens = Access.parse_access(tokens)
@@ -51,7 +51,7 @@ class UmlCreator:
         entity, tokens = UmlEntity.parse_entity(tokens)
 
         kwargs = dict(
-            nsp=nsp, access=access, attrs=attrs, modifiers=modifiers, repo_url=self.repo_url,
+            nsp=self.nsp, access=access, attrs=attrs, modifiers=modifiers, repo_url=self.repo_url
         )
 
         self.cur_attrs = []
@@ -65,37 +65,44 @@ class UmlCreator:
 
     def process_file(self):
         """Process a .cs file and parse it into entities."""
-        nsp, ent = None, None
+        ent = None
         try:
             with open(self.path, "r") as file_:
                 for _, line in enumerate(file_):
-                    if "///" in line:
-                        continue
-
-                    if nsp is None:
-                        nsp = self.extract_namespace(line)
-                        continue
-
-                    attr = self.extract_attribute(line)
-                    if attr:
-                        self.cur_attrs.append(attr)
-                        continue
-
-                    tokens = line.strip().split()
-                    if not tokens:
-                        continue
-
-                    if ent is None and self.re_entity.search(line):
-                        ent = self.extract_object(nsp, tokens)
-                    elif ent:
-                        self.cur_attrs = ent.parse_tokens(tokens, self.cur_attrs)
+                    ent = self.process_line(line, ent)
         except IsADirectoryError:
             return dict(), list()
-        if nsp is None:
+        if self.nsp is None:
             raise RuntimeError(f"No namespace found in {self.path}")
         if ent is None:
             raise RuntimeError(f"No class, enum, struct or interface found in {self.path}")
-        return {nsp: [ent]}, ent.relations_to_dot()
+        return {self.nsp: [ent]}, ent.relations_to_dot()
+
+    def process_line(self, line, ent):
+        """Process a line of C# code and return an entity."""
+        if "///" in line:
+            return ent
+
+        if self.nsp is None:
+            self.extract_namespace(line)
+            return ent
+
+        attr = self.extract_attribute(line)
+        if attr:
+            self.cur_attrs.append(attr)
+            return ent
+
+        tokens = line.strip().split()
+        if not tokens:
+            return ent
+
+        if ent is None and self.re_entity.search(line):
+            return self.extract_object(tokens)
+
+        if ent:
+            self.cur_attrs = ent.parse_tokens(tokens, self.cur_attrs)
+
+        return ent
 
     @staticmethod
     def write_gv(output_gv, label, font, namespaces, relations):
