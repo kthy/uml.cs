@@ -10,7 +10,7 @@ import click
 
 try:
     from creator import UmlCreator
-except (ImportError, ModuleNotFoundError):
+except (ImportError, ModuleNotFoundError):  # pragma: no cover
     from umldotcs.creator import UmlCreator
 
 NAMESPACES = dict()

@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""Main entrypoint for the uml.cs CLI."""  # pragma: no cover
+"""Main entrypoint for the uml.cs CLI."""
 
-try:  # pragma: no cover
+try:
     from cli import create_uml
 except (ImportError, ModuleNotFoundError):  # pragma: no cover
     from umldotcs.cli import create_uml

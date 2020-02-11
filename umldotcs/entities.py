@@ -7,7 +7,7 @@ from re import match, sub
 
 try:
     from features import Access, Field, MetaEntity, Method, Modifier
-except (ImportError, ModuleNotFoundError):
+except (ImportError, ModuleNotFoundError):  # pragma: no cover
     from umldotcs.features import Access, Field, MetaEntity, Method, Modifier
 
 
