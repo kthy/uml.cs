@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """Definition of features for/on UML entities."""
 
+from abc import ABC, abstractmethod
 from enum import Enum
 
 
@@ -49,25 +50,40 @@ class Access(Enum):
         return access, tokens
 
 
-class Field:
-    """A property/field."""
+class FieldOrMethod(ABC):
+    """An abstract Field or Method."""
 
-    def __init__(self, attrs, access, modifiers, typ, name):
+    def __init__(self, attrs, access, modifiers):
         self.attrs = attrs
         self.access = access
         self.modifiers = modifiers or []
+
+    def is_static(self):
+        """Return True if this Field or Method is static."""
+        return Modifier.STATIC in self.modifiers
+
+    @abstractmethod
+    def to_dot(self):
+        """Convert the Field or Method to GraphViz/dot code."""
+
+
+class Field(FieldOrMethod):
+    """A property/field."""
+
+    def __init__(self, attrs, access, modifiers, typ, name):
         self.type = typ
         self.name = name
+        super().__init__(attrs, access, modifiers)
 
     def to_dot(self):
         """Convert the Field to GraphViz/dot code."""
         dot = "                    <TR><TD"
         if not self.attrs:
             dot += ' COLSPAN="2"'
-        if Modifier.STATIC in self.modifiers:
+        if self.is_static():
             dot += "><U"
         dot += f">{self.access}{self.name} : {self.type}"
-        if Modifier.STATIC in self.modifiers:
+        if self.is_static():
             dot += "</U>"
         if self.attrs:
             dot += '</TD><TD ALIGN="RIGHT">' + attrs_to_dot(self.attrs)
@@ -92,16 +108,18 @@ class MetaEntity(Enum):
         yield cls.STRUCT.value
 
 
-class Method:
+class Method(FieldOrMethod):
     """A method."""
 
     def __init__(self, attrs, access, modifiers, return_type, signature):
-        self.attrs = attrs
-        self.access = access
-        self.modifiers = modifiers or []
         self.return_type = return_type
         # TODO: replace actual type(s) with T (, U, V, etc.)
         self.signature = signature.replace("<", "&lt;").replace(">", "&gt;")
+        super().__init__(attrs, access, modifiers)
+
+    def is_abstract(self):
+        """Return True if this Method is abstract."""
+        return Modifier.ABSTRACT in self.modifiers
 
     def to_dot(self):
         """Convert the Field to GraphViz/dot code."""
@@ -109,12 +127,12 @@ class Method:
         if not self.attrs:
             dot += ' COLSPAN="2"'
         # TODO: proper wrapping -- static, etc. wrap =
-        if Modifier.STATIC in self.modifiers:
+        if self.is_static():
             dot += "><U"
         dot += f">{self.access}{self.signature} : {self.return_type}"
         if self.attrs:
             dot += '</TD><TD ALIGN="RIGHT">' + attrs_to_dot(self.attrs)
-        if Modifier.STATIC in self.modifiers:
+        if self.is_static():
             dot += "</U>"
         dot += "</TD></TR>"
         return dot

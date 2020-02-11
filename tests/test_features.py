@@ -36,6 +36,14 @@ def test_parse_access():
     assert Access.parse_access(["public"] + tail) == (Access.PUBLIC, tail)
 
 
+def test_field_or_method_is_static():
+    """Test FieldOrMethod.is_static()."""
+    assert not Field(["XmlText"], Access.PUBLIC, None, "string", "Content").is_static()
+    assert Field(["XmlText"], Access.PUBLIC, [Modifier.STATIC], "string", "Content").is_static()
+    assert not Method([], Access.PUBLIC, None, "string", "GetContent()").is_static()
+    assert Method([], Access.PUBLIC, [Modifier.STATIC], "string", "GetContent()").is_static()
+
+
 def test_field_to_dot_with_one_attr():
     """Test Field.to_dot() with a single attribute."""
     field = Field(["XmlText"], Access.PUBLIC, None, "string", "Content")
@@ -66,6 +74,12 @@ def test_field_to_dot_without_attrs():
 def test_meta_entity_as_str_list():
     """Test MetaEntity.as_str_list()."""
     assert list(MetaEntity.as_str_list()) == ["class", "enum", "interface", "struct"]
+
+
+def test_method_is_abstract():
+    """Test Method.is_abstract()."""
+    assert not Method([], Access.PUBLIC, None, "string", "GetContent()").is_abstract()
+    assert Method([], Access.PUBLIC, [Modifier.ABSTRACT], "string", "GetContent()").is_abstract()
 
 
 def test_method_to_dot_with_one_attr():
