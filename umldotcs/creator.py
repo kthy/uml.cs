@@ -98,18 +98,17 @@ class UmlCreator:
         return {nsp: [ent]}, ent.relations_to_dot()
 
     @staticmethod
-    def write_gv(output_gv, namespaces, relations):
+    def write_gv(output_gv, label, font, namespaces, relations):
         """Write entities to a .gv file."""
         with open(output_gv, "w") as out:
-            # TODO: configure title, fonts, label
             out.write(
-                """digraph AutoLER2UML {
+                f"""digraph UML {{
 
-    graph [fontname = "Bahnschrift SemiBold", fontsize = 8]
-    edge  [fontname = "Bahnschrift", fontsize = 8]
-    node  [fontname = "Bahnschrift", fontsize = 8, shape = none, width=0, height=0, margin=0]
+    graph [fontname = "{font} SemiBold", fontsize = 8]
+    edge  [fontname = "{font}", fontsize = 8]
+    node  [fontname = "{font}", fontsize = 8, shape = none, width=0, height=0, margin=0]
 
-    label    = "LE34.AutoLER2 UML diagram"
+    label    = "{label}"
     labelloc = "t"\n"""
             )
             for nsp, classes in namespaces.items():

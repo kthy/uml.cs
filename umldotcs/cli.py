@@ -19,10 +19,12 @@ RELATIONS = []
 # TODO: add option for exclusions
 @click.command()
 @click.argument("directory")
+@click.option("-f", "--font", default="Bahnschrift")
+@click.option("-l", "--label", default="UML Diagram")
 @click.option("-o", "--output-gv", required=True)
 @click.option("-s", "--output-svg")
 @click.option("-u", "--repo-url")
-def create_uml(directory, output_gv, output_svg, repo_url):
+def create_uml(directory, font, label, output_gv, output_svg, repo_url):
     """Process all .cs files in directory and its sub-directories."""
     files = [f for f in glob(join(directory, "**", "*.cs"), recursive=True) if not exclude(f)]
     print(f"Processing {files}")
@@ -32,7 +34,7 @@ def create_uml(directory, output_gv, output_svg, repo_url):
         zip_namespaces(nsp)
         RELATIONS.extend(rel)
     if NAMESPACES:
-        UmlCreator.write_gv(output_gv, NAMESPACES, RELATIONS)
+        UmlCreator.write_gv(output_gv, label, font, NAMESPACES, RELATIONS)
         if output_svg:
             run(["dot", "-Tsvg", "-o", output_svg, output_gv], check=False)
     else:
