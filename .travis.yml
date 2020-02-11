@@ -14,10 +14,14 @@ before_install:
     - pip install pipenv
 install:
     - pipenv sync
-    - pipenv install pytest_cov
+    - pipenv install pytest_cov # argh!
+addons:
+    sonarcloud:
+        organization: kthy
 script:
     - pytest --version
     - python -m umldotcs -o tests_sln.gv ./tests/sln/
     - python -m pytest --cov-branch --cov-report term-missing:skip-covered --cov-report xml --cov=umldotcs tests/
 after_success:
     - codecov
+    - sonar-scanner
