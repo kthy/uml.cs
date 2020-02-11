@@ -14,6 +14,7 @@ before_install:
     - pip install pipenv
 install:
     - pipenv sync
+    - pipenv install pytest_cov
 script:
     - pytest --version
     - python -m umldotcs -o tests_sln.gv ./tests/sln/
