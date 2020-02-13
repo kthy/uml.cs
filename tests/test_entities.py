@@ -1,13 +1,23 @@
 """Test the entities."""
 
 # Interesting lines to parse:
-#   public class Measure : ICanBeXmlSerialized, IComparable, IEquatable<Measure>
-#   internal Measure() => this.Blocked();
-#   public static implicit operator string(Measure m) => m.ToString();
-#   public static bool operator <(Measure a, Measure b)
+#   public class Klass : ICanBeImplemented, IComparable, IEquatable<Klass>
+#   internal Klass() => this.Blocked();
+#   public static implicit operator string(Klass m) => m.ToString();
+#   public static bool operator <(Klass a, Klass b)
 #   public override bool Equals(object obj)
 
-from umldotcs.entities import UmlClass, UmlInterface
+import pytest
+
+from umldotcs.entities import (
+    EXTENDS,
+    IMPLEMENTS,
+    MetaEntity,
+    UmlClass,
+    UmlEntity,
+    UmlEnum,
+    UmlInterface,
+)
 from umldotcs.features import Access, Modifier
 
 
@@ -42,6 +52,50 @@ def test_uml_entity_format_href():
     entity.format_href("https://github.com/kthy/uml.cs/blob/master/tests/sln")
     href = "https://github.com/kthy/uml.cs/blob/master/tests/sln/Uml.Cs.Dll/UmlCsDll.cs"
     assert entity.repo_link == f'HREF="{href}" TARGET="_blank" TITLE="UmlCsDll.cs @ github.com"'
+
+
+def test_uml_entity_relations_to_dot():
+    """Test UmlEntity.relations_to_dot()."""
+    klass = UmlClass(["Classy"])
+    klass.implements = ["Extends", "Interface"]
+    assert klass.relations_to_dot() == [
+        f"    Classy -> Extends {EXTENDS}",
+        f"    Classy -> Interface {IMPLEMENTS}",
+    ]
+
+
+def test_uml_entity_parse_entity():
+    """Test UmlEntity.parse_entity(tokens)."""
+    with pytest.raises(IndexError):
+        UmlEntity.parse_entity([])
+    with pytest.raises(ValueError):
+        UmlEntity.parse_entity(["foo", "bar"])
+    inputs = [
+        ("class", MetaEntity.CLASS),
+        ("enum", MetaEntity.ENUM),
+        ("interface", MetaEntity.INTERFACE),
+        ("struct", MetaEntity.STRUCT),
+    ]
+    for i in inputs:
+        ent, toks = UmlEntity.parse_entity([i[0], "foo"])
+        assert ent == i[1]
+        assert toks == ["foo"]
+
+
+def test_uml_class_display_name():
+    """Test UmlClass.display_name()."""
+    klass = UmlClass(["Classy"])
+    assert klass.display_name() == "Classy"
+    abstract_klass = UmlClass(["Classy"], modifiers=[Modifier.ABSTRACT])
+    assert abstract_klass.display_name() == "<I>Classy</I>"
+    static_klass = UmlClass(["Classy"], modifiers=[Modifier.STATIC])
+    assert static_klass.display_name() == "<U>Classy</U>"
+
+
+def test_uml_enum_display_name():
+    """Test UmlEnum.display_name()."""
+    enum = UmlEnum(["Flags"])
+    assert enum.display_name() == "«enumeration»<BR/><I>Flags</I>"
 
 
 def test_uml_interface_display_name():
