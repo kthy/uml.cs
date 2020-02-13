@@ -28,7 +28,7 @@ def create_uml(directory, font, label, output_gv, output_svg, repo_url):
     """Process all .cs files in directory and its sub-directories."""
     files = glob_files(directory)
     for file_path in files:
-        click.echo(f"Processing {click.format_filename(file_path)}")
+        click.echo(f"Processing {click.format_filename(file_path)[len(directory):]}")
         nsp, rel = UmlCreator(file_path, repo_url).process_file()
         zip_namespaces(nsp)
         zip_relations(rel)
