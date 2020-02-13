@@ -10,9 +10,7 @@ cache: pip
 before_install:
   - pip install pipenv
 install:
-  - pipenv clean
   - pipenv sync
-  - pipenv sync --dev
 script:
   - lsb_release -a
   - pip list
