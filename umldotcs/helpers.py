@@ -12,8 +12,8 @@ def attrs_to_dot(attrs):
 def clean_generics(token):
     """Convert a string like IAmGeneric<Foo,Bar> into IAmGeneric_T_U_."""
     token = token.strip(",")
-    if "<" in token:
-        parts = match(r"([^<]+)<([^>]+)>", token)
+    parts = match(r"([^<]+)<([^>]+)>", token)
+    if parts:
         generics = list("TUVWXYZ"[: len(parts.group(2).split(","))])
         token = f"{parts.group(1)}_{'_'.join(generics)}_"
     return token
