@@ -12,7 +12,7 @@ before_install:
 install:
   - pipenv sync
 script:
-  - python -m pytest
+  - python -m pytest -v
   - python -m umldotcs -o tests_sln.gv ./tests/sln/
 jobs:
   include:
