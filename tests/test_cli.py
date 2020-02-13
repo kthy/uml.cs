@@ -14,16 +14,18 @@ from umldotcs.cli import (
 def test_glob_files():
     """Test cli.glob_files(dir)."""
     base_path = "./tests/sln/"
-    assert glob_files(".") == [
-        base_path + f
-        for f in [
-            "Uml.Cs.App/Program.cs",
-            "Uml.Cs.Dll/ICanBeImplemented.cs",
-            "Uml.Cs.Dll/SubUmlCsDll.cs",
-            "Uml.Cs.Dll/UmlCsDll.cs",
-            "Uml.Cs.Dll/UmlEnum.cs",
+    assert sorted(glob_files(".")) == sorted(
+        [
+            base_path + f
+            for f in [
+                "Uml.Cs.App/Program.cs",
+                "Uml.Cs.Dll/ICanBeImplemented.cs",
+                "Uml.Cs.Dll/SubUmlCsDll.cs",
+                "Uml.Cs.Dll/UmlCsDll.cs",
+                "Uml.Cs.Dll/UmlEnum.cs",
+            ]
         ]
-    ]
+    )
 
 
 def test_exclude():
