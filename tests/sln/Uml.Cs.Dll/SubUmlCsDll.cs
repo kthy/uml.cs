@@ -13,5 +13,10 @@ namespace Uml.Cs.Dll
         {
             throw new NotImplementedException();
         }
+
+        public static string Concat(string first, string second)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
