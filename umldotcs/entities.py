@@ -16,6 +16,9 @@ except (ImportError, ModuleNotFoundError):
 ARROW = "=>"
 CURLY = "{"
 
+EXTENDS = "[arrowhead = normal, style = solid]"
+IMPLEMENTS = "[arrowhead = empty, style = dotted]"
+
 
 class UmlEntity(ABC):
     """An abstract UML entity."""
@@ -105,11 +108,7 @@ class UmlEntity(ABC):
         """Convert the objects relations to GraphViz/dot code."""
         rels = []
         for rel in self.implements:
-            style = (
-                "[arrowhead = empty, style = dotted]"
-                if rel.startswith("I")
-                else "[arrowhead = normal, style = solid]"
-            )
+            style = IMPLEMENTS if rel.startswith("I") else EXTENDS
             rels.append(f"    {self.name} -> {rel} {style}")
         return rels
 
