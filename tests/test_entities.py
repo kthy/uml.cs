@@ -1,12 +1,5 @@
 """Test the entities."""
 
-# Interesting lines to parse:
-#   public class Klass : ICanBeImplemented, IComparable, IEquatable<Klass>
-#   internal Klass() => this.Blocked();
-#   public static implicit operator string(Klass m) => m.ToString();
-#   public static bool operator <(Klass a, Klass b)
-#   public override bool Equals(object obj)
-
 import pytest
 
 from umldotcs.entities import (
@@ -18,7 +11,7 @@ from umldotcs.entities import (
     UmlEnum,
     UmlInterface,
 )
-from umldotcs.features import Access, Modifier
+from umldotcs.features import Access, Method, Modifier
 
 
 def test_uml_entity___init__():
@@ -86,16 +79,6 @@ def test_uml_entity_format_href():
     assert entity.repo_link == f'HREF="{href}" TARGET="_blank" TITLE="UmlCsDll.cs @ github.com"'
 
 
-def test_uml_entity_relations_to_dot():
-    """Test UmlEntity.relations_to_dot()."""
-    klass = UmlClass(["Classy"])
-    klass.implements = ["Extends", "Interface"]
-    assert klass.relations_to_dot() == [
-        f"    Classy -> Extends {EXTENDS}",
-        f"    Classy -> Interface {IMPLEMENTS}",
-    ]
-
-
 def test_uml_entity_parse_entity():
     """Test UmlEntity.parse_entity(tokens)."""
     with pytest.raises(IndexError):
@@ -112,6 +95,52 @@ def test_uml_entity_parse_entity():
         ent, toks = UmlEntity.parse_entity([i[0], "foo"])
         assert ent == i[1]
         assert toks == ["foo"]
+
+
+def test_uml_entity_parse_tokens():
+    """Test UmlEntity.parse_tokens(tokens, attr)."""
+    klass = UmlClass(["Klass"])
+    tokens = "internal Klass() => this.Blocked();".split()
+    klass.parse_tokens(tokens, None)
+    assert klass.methods == [Method(None, Access.INTERNAL, [], "", "«Create» Klass()")]
+
+    klass = UmlClass(["Klass"])
+    tokens = "public string Concat(string first, string second)".split()
+    klass.parse_tokens(tokens, ["XmlText"])
+    assert klass.methods == [
+        Method(["XmlText"], Access.PUBLIC, [], "string", "Concat(string, string)")
+    ]
+
+    klass = UmlClass(["Klass"])
+    tokens = "public override bool Equals(object obj)".split()
+    klass.parse_tokens(tokens, None)
+    assert klass.methods == [
+        Method(None, Access.PUBLIC, [Modifier.OVERRIDE], "bool", "Equals(object)")
+    ]
+
+    klass = UmlClass(["Klass"])
+    tokens = "public static implicit operator string(Klass m) => m.ToString();".split()
+    klass.parse_tokens(tokens, None)
+    assert klass.methods == [
+        Method(None, Access.PUBLIC, [Modifier.STATIC], "string", "«Cast»(Klass)")
+    ]
+
+    klass = UmlClass(["Klass"])
+    tokens = "public static bool operator <(Klass a, Klass b)".split()
+    klass.parse_tokens(tokens, None)
+    assert klass.methods == [
+        Method(None, Access.PUBLIC, [Modifier.STATIC], "bool", "operator <(Klass, Klass)")
+    ]
+
+
+def test_uml_entity_relations_to_dot():
+    """Test UmlEntity.relations_to_dot()."""
+    klass = UmlClass(["Classy"])
+    klass.implements = ["Extends", "Interface"]
+    assert klass.relations_to_dot() == [
+        f"    Classy -> Extends {EXTENDS}",
+        f"    Classy -> Interface {IMPLEMENTS}",
+    ]
 
 
 def test_uml_class_display_name():

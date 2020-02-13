@@ -8,7 +8,6 @@ from re import match
 from umldotcs.features import Access, Field, MetaEntity, Method, Modifier
 from umldotcs.helpers import clean_generics
 
-
 ARROW = "=>"
 CURLY = "{"
 
@@ -93,14 +92,23 @@ class UmlEntity(ABC):
         modifiers, tokens = Modifier.parse_modifiers(tokens)
         return_type = tokens[0]
         if return_type.startswith(self.name + "("):
-            return_type = "«Create»"
+            return_type = ""
+            tokens = ["«Create»"] + tokens
+        elif return_type in ["explicit", "implicit"]:
+            del tokens[:2]
+            return_type = tokens[0].split("(", 1)[0]
+            tokens[0] = tokens[0].replace(return_type, "«Cast»")
         else:
+            if return_type == "void":
+                return_type = ""
             del tokens[0]
         if CURLY in tokens:
             tokens = tokens[: tokens.index(CURLY)]
         elif ARROW in tokens:
             tokens = tokens[: tokens.index(ARROW)]
-        signature = " ".join(tokens)
+        tokens = ["," if "," in t else t for t in tokens]
+        tokens = [")" if ")" in t and t[-2:] != "()" else t for t in tokens]
+        signature = " ".join(tokens).replace(" ,", ",").replace(" )", ")")
         if "(" in signature:
             self.methods.append(Method(attrs, access, modifiers, return_type, signature))
         else:
