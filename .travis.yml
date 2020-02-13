@@ -12,8 +12,6 @@ before_install:
 install:
   - pipenv sync
 script:
-  - lsb_release -a
-  - pip list
   - python -m pytest
   - python -m umldotcs -o tests_sln.gv ./tests/sln/
 jobs:
@@ -25,8 +23,6 @@ jobs:
         - pip install pipenv
       install:
         - pipenv sync
-        - pipenv install pytest_cov # argh!
-        - pipenv install 'black==19.10b0'
       addons:
         sonarcloud:
           organization: kthy
