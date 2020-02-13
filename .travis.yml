@@ -11,8 +11,9 @@ cache: pip
 before_install:
   - pip install pipenv
 install:
-  - pipenv sync
+  - pipenv sync --dev
 script:
+  - lsb_release -a
   - pip list
   - python -m pytest
   - python -m umldotcs -o tests_sln.gv ./tests/sln/
