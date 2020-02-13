@@ -133,18 +133,18 @@ def test_method_is_abstract():
 
 def test_method_to_dot_with_one_attr():
     """Test Method.to_dot() with a single attribute."""
-    method = Method(["XmlElement"], Access.PUBLIC, [], "bool", "Equals(object o)")
+    method = Method(["XmlElement"], Access.PUBLIC, [], "bool", "Equals(object)")
     dot = method.to_dot()
     assert (
-        dot == f'{S20}<TR><TD>+Equals(object o) : bool</TD><TD ALIGN="RIGHT">[XmlElement]</TD></TR>'
+        dot == f'{S20}<TR><TD>+Equals(object) : bool</TD><TD ALIGN="RIGHT">[XmlElement]</TD></TR>'
     )
 
 
 def test_method_to_dot_without_attrs():
     """Test Method.to_dot() without attributes."""
-    method = Method([], Access.PUBLIC, [Modifier.STATIC], "string", "«cast»(Measure m)")
+    method = Method([], Access.PUBLIC, [Modifier.STATIC], "string", "«Cast»(Klass)")
     dot = method.to_dot()
-    assert dot == f'{S20}<TR><TD COLSPAN="2"><U>+«cast»(Measure m) : string</U></TD></TR>'
+    assert dot == f'{S20}<TR><TD COLSPAN="2"><U>+«Cast»(Klass) : string</U></TD></TR>'
 
 
 def test_modifier___repr__():
