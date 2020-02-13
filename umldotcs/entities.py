@@ -3,12 +3,14 @@
 
 from abc import ABC, abstractmethod
 from os import linesep
-from re import match, sub
+from re import match
 
 try:
     from features import Access, Field, MetaEntity, Method, Modifier
+    from helpers import clean_generics
 except (ImportError, ModuleNotFoundError):
     from umldotcs.features import Access, Field, MetaEntity, Method, Modifier
+    from umldotcs.helpers import clean_generics
 
 
 ARROW = "=>"
@@ -33,8 +35,7 @@ class UmlEntity(ABC):
         self.format_href(kwargs.get("repo_url", None))
         self.modifiers = kwargs.get("modifiers", [])
 
-        self.implements = [t.strip(", ") for t in tokens[1:]] if tokens else []
-        self.implements = [sub("<(.*)>$", r"_\1_", i) for i in self.implements]
+        self.implements = [clean_generics(t) for t in tokens[1:]] if tokens else []
 
     def __repr__(self):
         """A representation of the entity."""

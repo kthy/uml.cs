@@ -26,7 +26,7 @@ def test_uml_entity___init__():
     assert entity.access == Access.PUBLIC
     assert entity.attrs == []
     assert entity.modifiers == [Modifier.ABSTRACT, Modifier.SEALED]
-    assert entity.implements == ["IFace", "IGeneric_Foo_"]
+    assert entity.implements == ["IFace", "IGeneric_T_"]
 
 
 def test_uml_entity___repr__():

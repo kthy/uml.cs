@@ -4,6 +4,11 @@
 from abc import ABC, abstractmethod
 from enum import Enum
 
+try:
+    from helpers import clean_generics
+except (ImportError, ModuleNotFoundError):
+    from umldotcs.helpers import clean_generics
+
 
 def attrs_to_dot(attrs):
     """Convert list of attributes to a dot string."""
@@ -113,8 +118,7 @@ class Method(FieldOrMethod):
 
     def __init__(self, attrs, access, modifiers, return_type, signature):
         self.return_type = return_type
-        # TODO: replace actual type(s) with T (, U, V, etc.)
-        self.signature = signature.replace("<", "&lt;").replace(">", "&gt;")
+        self.signature = clean_generics(signature)
         super().__init__(attrs, access, modifiers)
 
     def is_abstract(self):
