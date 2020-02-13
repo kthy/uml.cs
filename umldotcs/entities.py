@@ -74,11 +74,11 @@ class UmlEntity(ABC):
 
     def is_abstract(self):
         """Return True if this entity is abstract."""
-        return Modifier.ABSTRACT in self.modifiers
+        return any([m is Modifier.ABSTRACT for m in self.modifiers])
 
     def is_static(self):
         """Return True if this entity is static."""
-        return Modifier.STATIC in self.modifiers
+        return any([m is Modifier.STATIC for m in self.modifiers])
 
     @staticmethod
     def parse_entity(tokens):

@@ -119,8 +119,10 @@ def test_uml_class_display_name():
     klass = UmlClass(["Classy"])
     assert klass.display_name() == "Classy"
     abstract_klass = UmlClass(["Classy"], modifiers=[Modifier.ABSTRACT])
+    assert abstract_klass.is_abstract()
     assert abstract_klass.display_name() == "<I>Classy</I>"
     static_klass = UmlClass(["Classy"], modifiers=[Modifier.STATIC])
+    assert static_klass.is_static()
     assert static_klass.display_name() == "<U>Classy</U>"
 
 
