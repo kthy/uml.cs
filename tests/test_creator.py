@@ -41,7 +41,7 @@ def test_extract_object():
             "IEquatable<Klass>",
         ]
     )
-    assert isinstance(obj, UmlClass)
+    assert obj.__class__.__name__ == "UmlClass"
     assert obj.access == Access.PUBLIC
     assert obj.modifiers == [Modifier.STATIC]
     assert obj.name == "StaticKlass"
