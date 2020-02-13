@@ -4,10 +4,7 @@
 from abc import ABC, abstractmethod
 from enum import Enum, unique
 
-try:
-    from helpers import attrs_to_dot, clean_generics
-except (ImportError, ModuleNotFoundError):
-    from umldotcs.helpers import attrs_to_dot, clean_generics
+from umldotcs.helpers import attrs_to_dot, clean_generics
 
 
 @unique

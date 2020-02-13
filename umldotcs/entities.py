@@ -5,12 +5,8 @@ from abc import ABC, abstractmethod
 from os import linesep
 from re import match
 
-try:
-    from features import Access, Field, MetaEntity, Method, Modifier
-    from helpers import clean_generics
-except (ImportError, ModuleNotFoundError):
-    from umldotcs.features import Access, Field, MetaEntity, Method, Modifier
-    from umldotcs.helpers import clean_generics
+from umldotcs.features import Access, Field, MetaEntity, Method, Modifier
+from umldotcs.helpers import clean_generics
 
 
 ARROW = "=>"

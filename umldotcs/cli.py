@@ -8,10 +8,7 @@ from subprocess import CalledProcessError, run  # nosec
 
 import click
 
-try:
-    from creator import UmlCreator
-except (ImportError, ModuleNotFoundError):
-    from umldotcs.creator import UmlCreator
+from umldotcs.creator import UmlCreator
 
 NAMESPACES = dict()
 RELATIONS = list()

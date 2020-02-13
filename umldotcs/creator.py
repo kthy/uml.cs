@@ -3,12 +3,8 @@
 
 import re
 
-try:
-    from entities import UmlClass, UmlEntity, UmlEnum, UmlInterface, UmlStruct
-    from features import Access, MetaEntity, Modifier
-except (ImportError, ModuleNotFoundError):
-    from umldotcs.entities import UmlClass, UmlEntity, UmlEnum, UmlInterface, UmlStruct
-    from umldotcs.features import Access, MetaEntity, Modifier
+from umldotcs.entities import UmlClass, UmlEntity, UmlEnum, UmlInterface, UmlStruct
+from umldotcs.features import Access, MetaEntity, Modifier
 
 BOM = "\ufeff"
 AZAZ = "A-Za-z"
