@@ -5,14 +5,9 @@ from abc import ABC, abstractmethod
 from enum import Enum
 
 try:
-    from helpers import clean_generics
+    from helpers import attrs_to_dot, clean_generics
 except (ImportError, ModuleNotFoundError):
-    from umldotcs.helpers import clean_generics
-
-
-def attrs_to_dot(attrs):
-    """Convert list of attributes to a dot string."""
-    return "<BR/>".join([f"[{attr}]" for attr in attrs]) if attrs else ""
+    from umldotcs.helpers import attrs_to_dot, clean_generics
 
 
 class Access(Enum):
@@ -25,7 +20,11 @@ class Access(Enum):
     PROTECTEDINTERNAL = "protected internal"
     PUBLIC = "public"
 
-    def __str__(self):
+    def __repr__(self):
+        return f'Access("{self.value}")'
+
+    def to_dot(self):
+        """Convert the Access value to GraphViz/dot code."""
         return {
             self.INTERNAL: "~",
             self.PRIVATE: "-",
@@ -63,6 +62,15 @@ class FieldOrMethod(ABC):
         self.access = access
         self.modifiers = modifiers or []
 
+    def __eq__(self, other):
+        return all(
+            [
+                self.attrs == other.attrs,
+                self.access == other.access,
+                self.modifiers == other.modifiers,
+            ]
+        )
+
     def is_static(self):
         """Return True if this Field or Method is static."""
         return Modifier.STATIC in self.modifiers
@@ -80,6 +88,16 @@ class Field(FieldOrMethod):
         self.name = name
         super().__init__(attrs, access, modifiers)
 
+    def __eq__(self, other):
+        if other is None:
+            return False
+        if not isinstance(other, Field):
+            return False
+        return all([super().__eq__(other), self.type == other.type, self.name == other.name])
+
+    def __repr__(self):
+        return f'Field({self.attrs}, {self.access}, {self.modifiers}, "{self.type}", "{self.name}")'
+
     def to_dot(self):
         """Convert the Field to GraphViz/dot code."""
         dot = "                    <TR><TD"
@@ -87,7 +105,7 @@ class Field(FieldOrMethod):
             dot += ' COLSPAN="2"'
         if self.is_static():
             dot += "><U"
-        dot += f">{self.access}{self.name} : {self.type}"
+        dot += f">{self.access.to_dot()}{self.name} : {self.type}"
         if self.is_static():
             dot += "</U>"
         if self.attrs:
@@ -103,6 +121,9 @@ class MetaEntity(Enum):
     ENUM = "enum"
     INTERFACE = "interface"
     STRUCT = "struct"
+
+    def __repr__(self):
+        return f'MetaEntity("{self.value}")'
 
     @classmethod
     def as_str_list(cls):
@@ -121,6 +142,22 @@ class Method(FieldOrMethod):
         self.signature = clean_generics(signature)
         super().__init__(attrs, access, modifiers)
 
+    def __eq__(self, other):
+        if other is None:
+            return False
+        if not isinstance(other, Method):
+            return False
+        return all(
+            [
+                super().__eq__(other),
+                self.return_type == other.return_type,
+                self.signature == other.signature,
+            ]
+        )
+
+    def __repr__(self):
+        return f'Method({self.attrs}, {self.access}, {self.modifiers}, "{self.return_type}", "{self.signature}")'
+
     def is_abstract(self):
         """Return True if this Method is abstract."""
         return Modifier.ABSTRACT in self.modifiers
@@ -133,7 +170,7 @@ class Method(FieldOrMethod):
         # TODO: proper wrapping -- static, etc. wrap =
         if self.is_static():
             dot += "><U"
-        dot += f">{self.access}{self.signature} : {self.return_type}"
+        dot += f">{self.access.to_dot()}{self.signature} : {self.return_type}"
         if self.attrs:
             dot += '</TD><TD ALIGN="RIGHT">' + attrs_to_dot(self.attrs)
         if self.is_static():
@@ -157,6 +194,9 @@ class Modifier(Enum):
     UNSAFE = "unsafe"
     VIRTUAL = "virtual"
     VOLATILE = "volatile"
+
+    def __repr__(self):
+        return f'Modifier("{self.value}")'
 
     @staticmethod
     def class_modifiers():

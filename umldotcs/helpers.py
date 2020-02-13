@@ -4,6 +4,11 @@
 from re import match
 
 
+def attrs_to_dot(attrs):
+    """Convert list of attributes to a dot string."""
+    return "<BR/>".join([f"[{attr}]" for attr in attrs]) if attrs else ""
+
+
 def clean_generics(token):
     """Convert a string like IAmGeneric<Foo,Bar> into IAmGeneric_T_U_."""
     token = token.strip(",")

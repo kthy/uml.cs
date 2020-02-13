@@ -3,7 +3,6 @@
 import pytest
 
 from umldotcs.creator import UmlCreator
-from umldotcs.entities import UmlClass
 from umldotcs.features import Access, Modifier
 
 

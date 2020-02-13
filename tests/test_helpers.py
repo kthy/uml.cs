@@ -2,7 +2,16 @@
 
 import pytest
 
-from umldotcs.helpers import clean_generics
+from umldotcs.helpers import attrs_to_dot, clean_generics
+
+
+def test_attrs_to_dot():
+    """Test attrs_to_dot()."""
+    assert attrs_to_dot(None) == ""
+    assert attrs_to_dot([]) == ""
+    assert attrs_to_dot(["Foo"]) == "[Foo]"
+    assert attrs_to_dot(["Foo", "Bar"]) == "[Foo]<BR/>[Bar]"
+    assert attrs_to_dot(["Foo", "Bar", "Baz"]) == "[Foo]<BR/>[Bar]<BR/>[Baz]"
 
 
 def test_clean_generics():

@@ -25,6 +25,8 @@ class UmlEntity(ABC):
 
     # pylint: disable=too-many-instance-attributes
     def __init__(self, tokens, **kwargs):
+        self.__tokens = tokens.copy()
+        self.__kwargs = kwargs
         self.fields = []
         self.methods = []
         self.name = tokens[0]
@@ -40,15 +42,20 @@ class UmlEntity(ABC):
 
         self.implements = [clean_generics(t) for t in tokens[1:]] if tokens else []
 
+    def __eq__(self, other):
+        if other is None:
+            return False
+        if not isinstance(other, UmlEntity):
+            return False
+        return self.__tokens == other.__tokens and self.__kwargs == other.__kwargs
+
     def __repr__(self):
-        """A representation of the entity."""
+        return f"{self.__class__.__name__}({self.__tokens}, **{self.__kwargs})"
+
+    def __str__(self):
         mods = " " * bool(self.modifiers) + " ".join([m.value for m in self.modifiers])
         typ = self.__class__.__name__[3:].lower()
         return f"{self.access.value}{mods} {typ} {self.name}"
-
-    def __str__(self):
-        """A string representation of the entity suitable for printing."""
-        return self.to_dot().partition("\n")[0]
 
     @abstractmethod
     def display_name(self):

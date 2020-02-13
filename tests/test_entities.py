@@ -39,10 +39,42 @@ def test_uml_entity___init__():
     assert entity.implements == ["IFace", "IGeneric_T_"]
 
 
+def test_uml_entity___eq__():
+    """Test UmlEntity.__eq__()."""
+    kwargs = dict(
+        nsp="Name.Space",
+        access=Access.PUBLIC,
+        attrs=[],
+        repo_url="https://example.com",
+        modifiers=[Modifier.ABSTRACT, Modifier.SEALED],
+    )
+    entity1 = UmlClass(["Foo", ":", "IFace", "IGeneric<Foo>"], **kwargs)
+    entity2 = UmlClass(["Foo", ":", "IFace", "IGeneric<Foo>"], **kwargs)
+    entity3 = None
+    entity4 = "str"
+    assert entity1 == entity2
+    assert entity1 != entity3
+    assert entity1 != entity4
+
+
 def test_uml_entity___repr__():
     """Test UmlEntity.__repr__()."""
+    kwargs = dict(
+        nsp="Name.Space",
+        access=Access.PUBLIC,
+        attrs=[],
+        repo_url="https://example.com",
+        modifiers=[Modifier.ABSTRACT, Modifier.SEALED],
+    )
+    entity = UmlClass(["Foo", ":", "IFace", "IGeneric<Foo>"], **kwargs)
+    lazarus = eval(repr(entity))  # pylint: disable=eval-used
+    assert lazarus == entity
+
+
+def test_uml_entity___str__():
+    """Test UmlEntity.__str__()."""
     entity = UmlInterface(["ICanBeWhateverYouWant"])
-    assert repr(entity) == "internal interface ICanBeWhateverYouWant"
+    assert f"{entity}" == "internal interface ICanBeWhateverYouWant"
 
 
 def test_uml_entity_format_href():
