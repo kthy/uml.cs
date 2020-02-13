@@ -8,4 +8,4 @@ except (ImportError, ModuleNotFoundError):
     from umldotcs.cli import create_uml
 
 if __name__ == "__main__":
-    create_uml()  # pylint: disable=no-value-for-parameter
+    create_uml(prog_name="umldotcs")  # pylint: disable=no-value-for-parameter
