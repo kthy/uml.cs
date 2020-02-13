@@ -92,7 +92,7 @@ class UmlCreator:
             self.cur_attrs.append(attr)
             return ent
 
-        tokens = line.strip().split()
+        tokens = self.tokenize(line)
         if not tokens:
             return ent
 
@@ -103,6 +103,11 @@ class UmlCreator:
             self.cur_attrs = ent.parse_tokens(tokens, self.cur_attrs)
 
         return ent
+
+    @staticmethod
+    def tokenize(line):
+        """Take a line of code, return a list of tokens."""
+        return line.strip().split()
 
     @staticmethod
     def write_gv(output_gv, label, font, namespaces, relations):
