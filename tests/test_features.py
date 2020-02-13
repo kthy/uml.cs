@@ -2,6 +2,8 @@
 
 from umldotcs.features import Access, Field, MetaEntity, Method, Modifier, attrs_to_dot
 
+S20 = 20 * " "
+
 
 def test_attrs_to_dot():
     """Test the attrs_to_dot method."""
@@ -15,7 +17,7 @@ def test_access___repr__():
     """Test the __repr__ method of the Access class."""
     access = Access.PRIVATE
     lazarus = eval(repr(access))  # pylint: disable=eval-used
-    assert lazarus == access
+    assert lazarus is Access.PRIVATE
 
 
 def test_access_to_dot():
@@ -73,10 +75,7 @@ def test_field_to_dot_with_one_attr():
     """Test Field.to_dot() with a single attribute."""
     field = Field(["XmlText"], Access.PUBLIC, None, "string", "Content")
     dot = field.to_dot()
-    assert (
-        dot
-        == '                    <TR><TD>+Content : string</TD><TD ALIGN="RIGHT">[XmlText]</TD></TR>'
-    )
+    assert dot == f'{S20}<TR><TD>+Content : string</TD><TD ALIGN="RIGHT">[XmlText]</TD></TR>'
 
 
 def test_field_to_dot_with_more_than_one_attr():
@@ -85,7 +84,7 @@ def test_field_to_dot_with_more_than_one_attr():
     dot = field.to_dot()
     assert (
         dot
-        == '                    <TR><TD><U>~Content : string</U></TD><TD ALIGN="RIGHT">[One]<BR/>[Two]</TD></TR>'
+        == f'{S20}<TR><TD><U>~Content : string</U></TD><TD ALIGN="RIGHT">[One]<BR/>[Two]</TD></TR>'
     )
 
 
@@ -93,14 +92,14 @@ def test_field_to_dot_without_attrs():
     """Test Field.to_dot() without attributes."""
     field = Field([], Access.PRIVATE, [Modifier.STATIC], "bool", "Boolean")
     dot = field.to_dot()
-    assert dot == '                    <TR><TD COLSPAN="2"><U>-Boolean : bool</U></TD></TR>'
+    assert dot == f'{S20}<TR><TD COLSPAN="2"><U>-Boolean : bool</U></TD></TR>'
 
 
 def test_meta_entity___repr__():
     """Test the __repr__ method of the MetaEntity class."""
     ment = MetaEntity.INTERFACE
     lazarus = eval(repr(ment))  # pylint: disable=eval-used
-    assert lazarus == ment
+    assert lazarus is MetaEntity.INTERFACE
 
 
 def test_meta_entity_as_str_list():
@@ -137,8 +136,7 @@ def test_method_to_dot_with_one_attr():
     method = Method(["XmlElement"], Access.PUBLIC, [], "bool", "Equals(object o)")
     dot = method.to_dot()
     assert (
-        dot
-        == '                    <TR><TD>+Equals(object o) : bool</TD><TD ALIGN="RIGHT">[XmlElement]</TD></TR>'
+        dot == f'{S20}<TR><TD>+Equals(object o) : bool</TD><TD ALIGN="RIGHT">[XmlElement]</TD></TR>'
     )
 
 
@@ -146,17 +144,14 @@ def test_method_to_dot_without_attrs():
     """Test Method.to_dot() without attributes."""
     method = Method([], Access.PUBLIC, [Modifier.STATIC], "string", "«cast»(Measure m)")
     dot = method.to_dot()
-    assert (
-        dot
-        == '                    <TR><TD COLSPAN="2"><U>+«cast»(Measure m) : string</U></TD></TR>'
-    )
+    assert dot == f'{S20}<TR><TD COLSPAN="2"><U>+«cast»(Measure m) : string</U></TD></TR>'
 
 
 def test_modifier___repr__():
     """Test the __repr__ method of the Modifier class."""
-    mod = Modifier.STATIC
+    mod = Modifier.VOLATILE
     lazarus = eval(repr(mod))  # pylint: disable=eval-used
-    assert lazarus == mod
+    assert lazarus is Modifier.VOLATILE
 
 
 def test_modifier_class_modifiers():

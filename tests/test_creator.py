@@ -41,8 +41,8 @@ def test_extract_object():
         ]
     )
     assert obj.__class__.__name__ == "UmlClass"
-    assert obj.access.value == Access.PUBLIC.value
-    assert obj.modifiers[0].value == Modifier.STATIC.value
+    assert obj.access is Access.PUBLIC
+    assert obj.modifiers == [Modifier.STATIC]
     assert obj.name == "StaticKlass"
     assert obj.implements == ["ICanBeImplemented", "IComparable", "IEquatable_T_"]
 

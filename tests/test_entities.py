@@ -33,7 +33,7 @@ def test_uml_entity___init__():
     entity = UmlClass(["Foo", ":", "IFace", "IGeneric<Foo>"], **kwargs)
     assert entity.namespace == "Name.Space"
     assert entity.name == "Foo"
-    assert entity.access == Access.PUBLIC
+    assert entity.access is Access.PUBLIC
     assert entity.attrs == []
     assert entity.modifiers == [Modifier.ABSTRACT, Modifier.SEALED]
     assert entity.implements == ["IFace", "IGeneric_T_"]
