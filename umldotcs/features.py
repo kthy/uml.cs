@@ -2,7 +2,7 @@
 """Definition of features for/on UML entities."""
 
 from abc import ABC, abstractmethod
-from enum import Enum
+from enum import Enum, unique
 
 try:
     from helpers import attrs_to_dot, clean_generics
@@ -10,6 +10,7 @@ except (ImportError, ModuleNotFoundError):
     from umldotcs.helpers import attrs_to_dot, clean_generics
 
 
+@unique
 class Access(Enum):
     """A class, field or method access restriction keyword."""
 
@@ -114,6 +115,7 @@ class Field(FieldOrMethod):
         return dot
 
 
+@unique
 class MetaEntity(Enum):
     """Entity type enumeration."""
 
@@ -179,6 +181,7 @@ class Method(FieldOrMethod):
         return dot
 
 
+@unique
 class Modifier(Enum):
     """A class, field or method modifier."""
 
