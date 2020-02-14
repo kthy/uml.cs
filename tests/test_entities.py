@@ -103,48 +103,66 @@ def test_uml_entity_parse_tokens():
     attrs = klass.parse_tokens(["}"], ["Attr"])
     assert klass.methods == []
     assert attrs == ["Attr"]
-    tokens = "public void Do()".split()
-    klass.parse_tokens(tokens, None)
-    assert klass.methods == [Method(None, Access.PUBLIC, [], "", "Do()")]
+
     tokens = "public Guid Id { get; set; }".split()
     klass.parse_tokens(tokens, None)
-    assert klass.fields == [Field(None, Access.PUBLIC, [], "Guid", "Id")]
+    assert klass.fields[0] == Field(None, Access.PUBLIC, [], "Guid", "Id")
 
-    klass = UmlClass(["Klass"])
-    tokens = "internal Klass() => this.Blocked();".split()
+    tokens = "private static readonly string CrLf = Environment.NewLine;".split()
     klass.parse_tokens(tokens, None)
-    assert klass.methods == [Method(None, Access.INTERNAL, [], "", "«Create» Klass()")]
-    tokens = "private readonly List<List<int>> IntMatrix = new List<List<int>>();"
-    klass.parse_tokens(tokens, None)
-    # assert klass.fields == [Field(None, Access.PRIVATE, [], "List&lt;List&lt;int&gt;&gt;", "IntMatrix")]
+    assert klass.fields[1] == Field(
+        None, Access.PRIVATE, [Modifier.STATIC, Modifier.READONLY], "string", "CrLf"
+    )
 
-    klass = UmlClass(["Klass"])
-    tokens = "public string Concat(string first, string second)".split()
-    klass.parse_tokens(tokens, ["XmlText"])
-    assert klass.methods == [
-        Method(["XmlText"], Access.PUBLIC, [], "string", "Concat(string, string)")
+    tokens = "private readonly List<List<int>> IntMatrix = new List<List<int>>();".split()
+    klass.parse_tokens(tokens, None)
+    assert klass.fields[2] == Field(
+        None, Access.PRIVATE, [Modifier.READONLY], "List&lt;List&lt;int&gt;&gt;", "IntMatrix"
+    )
+
+    line_vs_expected = [
+        (
+            "protected async Task<int> Do(string sql, IEnumerable<object> subs, bool prep = true)",
+            None,
+            Method(
+                None,
+                Access.PROTECTED,
+                [],
+                "Task&lt;int&gt;",
+                "Do(string, IEnumerable&lt;object&gt;, bool)",
+            ),
+        ),
+        ("public void Do()", None, Method(None, Access.PUBLIC, [], "", "Do()")),
+        (
+            "internal Klass() => this.Blocked();",
+            None,
+            Method(None, Access.INTERNAL, [], "", "«Create» Klass()"),
+        ),
+        (
+            "public override bool Equals(object obj)",
+            None,
+            Method(None, Access.PUBLIC, [Modifier.OVERRIDE], "bool", "Equals(object)"),
+        ),
+        (
+            "public string Concat(string first, string second)",
+            ["Attr"],
+            Method(["Attr"], Access.PUBLIC, [], "string", "Concat(string, string)"),
+        ),
+        (
+            "public static bool operator <(Klass a, Klass b)",
+            None,
+            Method(None, Access.PUBLIC, [Modifier.STATIC], "bool", "operator <(Klass, Klass)"),
+        ),
+        (
+            "public static implicit operator string(Klass m) => m.ToString();",
+            None,
+            Method(None, Access.PUBLIC, [Modifier.STATIC], "string", "«Cast»(Klass)"),
+        ),
     ]
-
-    klass = UmlClass(["Klass"])
-    tokens = "public override bool Equals(object obj)".split()
-    klass.parse_tokens(tokens, None)
-    assert klass.methods == [
-        Method(None, Access.PUBLIC, [Modifier.OVERRIDE], "bool", "Equals(object)")
-    ]
-
-    klass = UmlClass(["Klass"])
-    tokens = "public static implicit operator string(Klass m) => m.ToString();".split()
-    klass.parse_tokens(tokens, None)
-    assert klass.methods == [
-        Method(None, Access.PUBLIC, [Modifier.STATIC], "string", "«Cast»(Klass)")
-    ]
-
-    klass = UmlClass(["Klass"])
-    tokens = "public static bool operator <(Klass a, Klass b)".split()
-    klass.parse_tokens(tokens, None)
-    assert klass.methods == [
-        Method(None, Access.PUBLIC, [Modifier.STATIC], "bool", "operator <(Klass, Klass)")
-    ]
+    for lve in line_vs_expected:
+        klass = UmlClass(["Klass"])
+        klass.parse_tokens(lve[0].split(), lve[1])
+        assert klass.methods == [lve[2]]
 
 
 def test_uml_entity_relations_to_dot():
@@ -173,13 +191,13 @@ def test_uml_entity_to_dot():
         label = <<TABLE BGCOLOR="gray99" BORDER="1" CELLBORDER="0" CELLSPACING="0">
                     <TR><TD PORT="name" COLSPAN="2">Klass</TD></TR>
                     <HR/>
-                    <TR><TD COLSPAN="2">+Id : Guid</TD></TR>
-                    <TR><TD>+Name : string</TD><TD ALIGN="RIGHT">[XmlText]</TD></TR>
-                    <TR><TD COLSPAN="2"><U>-Count : int</U></TD></TR>
+                    <TR><TD ALIGN="LEFT" COLSPAN="2">+Id : Guid</TD></TR>
+                    <TR><TD ALIGN="LEFT">+Name : string</TD><TD ALIGN="RIGHT">[XmlText]</TD></TR>
+                    <TR><TD ALIGN="LEFT" COLSPAN="2"><U>-Count : int</U></TD></TR>
                     <HR/>
-                    <TR><TD COLSPAN="2">#«Create» Klass()</TD></TR>
-                    <TR><TD COLSPAN="2">+GetCount() : int</TD></TR>
-                    <TR><TD>~Do(string, byte[])</TD><TD ALIGN="RIGHT">[XmlAttr]</TD></TR>
+                    <TR><TD ALIGN="LEFT" COLSPAN="2">#«Create» Klass()</TD></TR>
+                    <TR><TD ALIGN="LEFT" COLSPAN="2">+GetCount() : int</TD></TR>
+                    <TR><TD ALIGN="LEFT">~Do(string, byte[])</TD><TD ALIGN="RIGHT">[XmlAttr]</TD></TR>
                 </TABLE>>
     ]
 """

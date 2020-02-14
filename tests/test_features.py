@@ -75,7 +75,10 @@ def test_field_to_dot_with_one_attr():
     """Test Field.to_dot() with a single attribute."""
     field = Field(["XmlText"], Access.PUBLIC, None, "string", "Content")
     dot = field.to_dot()
-    assert dot == f'{S20}<TR><TD>+Content : string</TD><TD ALIGN="RIGHT">[XmlText]</TD></TR>'
+    assert (
+        dot
+        == f'{S20}<TR><TD ALIGN="LEFT">+Content : string</TD><TD ALIGN="RIGHT">[XmlText]</TD></TR>'
+    )
 
 
 def test_field_to_dot_with_more_than_one_attr():
@@ -84,7 +87,7 @@ def test_field_to_dot_with_more_than_one_attr():
     dot = field.to_dot()
     assert (
         dot
-        == f'{S20}<TR><TD><U>~Content : string</U></TD><TD ALIGN="RIGHT">[One]<BR/>[Two]</TD></TR>'
+        == f'{S20}<TR><TD ALIGN="LEFT"><U>~Content : string</U></TD><TD ALIGN="RIGHT">[One]<BR/>[Two]</TD></TR>'
     )
 
 
@@ -92,7 +95,7 @@ def test_field_to_dot_without_attrs():
     """Test Field.to_dot() without attributes."""
     field = Field([], Access.PRIVATE, [Modifier.STATIC], "bool", "Boolean")
     dot = field.to_dot()
-    assert dot == f'{S20}<TR><TD COLSPAN="2"><U>-Boolean : bool</U></TD></TR>'
+    assert dot == f'{S20}<TR><TD ALIGN="LEFT" COLSPAN="2"><U>-Boolean : bool</U></TD></TR>'
 
 
 def test_meta_entity___repr__():
@@ -136,7 +139,8 @@ def test_method_to_dot_with_one_attr():
     method = Method(["XmlElement"], Access.PUBLIC, [], "bool", "Equals(object)")
     dot = method.to_dot()
     assert (
-        dot == f'{S20}<TR><TD>+Equals(object) : bool</TD><TD ALIGN="RIGHT">[XmlElement]</TD></TR>'
+        dot
+        == f'{S20}<TR><TD ALIGN="LEFT">+Equals(object) : bool</TD><TD ALIGN="RIGHT">[XmlElement]</TD></TR>'
     )
 
 
@@ -144,11 +148,11 @@ def test_method_to_dot_without_attrs():
     """Test Method.to_dot() without attributes."""
     method = Method([], Access.PUBLIC, [Modifier.STATIC], "string", "«Cast»(Klass)")
     dot = method.to_dot()
-    assert dot == f'{S20}<TR><TD COLSPAN="2"><U>+«Cast»(Klass) : string</U></TD></TR>'
+    assert dot == f'{S20}<TR><TD ALIGN="LEFT" COLSPAN="2"><U>+«Cast»(Klass) : string</U></TD></TR>'
 
     method = Method(None, Access.PRIVATE, None, "", "Parse(string)")
     dot = method.to_dot()
-    assert dot == f'{S20}<TR><TD COLSPAN="2">-Parse(string)</TD></TR>'
+    assert dot == f'{S20}<TR><TD ALIGN="LEFT" COLSPAN="2">-Parse(string)</TD></TR>'
 
 
 def test_modifier___repr__():

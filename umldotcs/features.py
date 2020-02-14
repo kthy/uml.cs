@@ -98,7 +98,7 @@ class Field(FieldOrMethod):
 
     def to_dot(self):
         """Convert the Field to GraphViz/dot code."""
-        dot = "                    <TR><TD"
+        dot = '                    <TR><TD ALIGN="LEFT"'
         if not self.attrs:
             dot += ' COLSPAN="2"'
         if self.is_static():
@@ -163,7 +163,7 @@ class Method(FieldOrMethod):
 
     def to_dot(self):
         """Convert the Field to GraphViz/dot code."""
-        dot = "                    <TR><TD"
+        dot = '                    <TR><TD ALIGN="LEFT"'
         if not self.attrs:
             dot += ' COLSPAN="2"'
         # TODO: proper wrapping -- static, etc. wrap =
