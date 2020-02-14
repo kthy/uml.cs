@@ -35,13 +35,15 @@ class UmlEntity(ABC):
         self.format_href(kwargs.get("repo_url", None))
         self.modifiers = kwargs.get("modifiers", [])
 
-        self.implements = [clean_generics(t) for t in tokens[1:]] if tokens else []
+        self.implements = [clean_generics(t) for t in tokens[1:] if t != "{"] if tokens else []
 
     def __eq__(self, other):
         if other is None:
             return False
         if not isinstance(other, UmlEntity):
             return False
+        # We are sure that we have a UmlEntity now, so it's okay to pick through its guts:
+        # pylint: disable=protected-access
         return self.__tokens == other.__tokens and self.__kwargs == other.__kwargs
 
     def __repr__(self):
