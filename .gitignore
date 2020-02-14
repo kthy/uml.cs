@@ -1,5 +1,6 @@
-# Graphviz files
+# My own output
 *.gv
+*.svg
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
