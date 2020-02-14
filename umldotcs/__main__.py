@@ -2,10 +2,9 @@
 # -*- coding: utf-8 -*-
 """Main entrypoint for the uml.cs CLI."""
 
-try:
-    from cli import create_uml
-except (ImportError, ModuleNotFoundError):
-    from umldotcs.cli import create_uml
+from umldotcs.cli import create_uml
 
 if __name__ == "__main__":
-    create_uml(prog_name="umldotcs")  # pylint: disable=no-value-for-parameter
+    # Click magically transforms the call, but pylint doesn't grok it…
+    # pylint: disable=no-value-for-parameter,unexpected-keyword-arg
+    create_uml(prog_name="umldotcs")
