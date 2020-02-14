@@ -17,3 +17,13 @@ def clean_generics(token):
         generics = list("TUVWXYZ"[: len(parts.group(2).split(","))])
         token = f"{parts.group(1)}_{'_'.join(generics)}_"
     return token
+
+
+def encode_generics(token):
+    """Convert a string like IAmGeneric<Foo,Bar> into IAmGeneric&lt;Foo,Bar&gt;."""
+    token = token.strip(",")
+    while "<" in token and ">" in token:
+        parts = match(r"([^<]+)<([^>]+)>(.*)", token)
+        if parts:
+            token = f"{parts.group(1)}&lt;{parts.group(2).replace(' ', '')}&gt;{parts.group(3)}"
+    return token
