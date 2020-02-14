@@ -2,6 +2,8 @@
 
 from subprocess import run
 
+from git import Repo
+
 
 def run_with_separator(args):
     """Print a horizontal rule to console and run a subprocess."""
@@ -32,4 +34,6 @@ if __name__ == "__main__":
         if BLACK.returncode == 0:
             run_with_separator(["pylint", "--extension-pkg-whitelist=lxml.etree", "umldotcs"])
             run_with_separator(["bandit", "--recursive", "--format", "txt", "umldotcs"])
-            run_with_separator(["travis", "lint"])
+
+    if Repo(".").git.diff("origin/master", ".travis.yml"):
+        run_with_separator(["travis", "lint"])
