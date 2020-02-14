@@ -169,7 +169,9 @@ class Method(FieldOrMethod):
         # TODO: proper wrapping -- static, etc. wrap =
         if self.is_static():
             dot += "><U"
-        dot += f">{self.access.to_dot()}{self.signature} : {self.return_type}"
+        dot += f">{self.access.to_dot()}{self.signature}"
+        if self.return_type:
+            dot += f" : {self.return_type}"
         if self.attrs:
             dot += '</TD><TD ALIGN="RIGHT">' + attrs_to_dot(self.attrs)
         if self.is_static():
