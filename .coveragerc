@@ -4,7 +4,6 @@ branch = True
 [report]
 exclude_lines =
     pragma: no cover
-    except .ImportError, ModuleNotFoundError.:
     if __name__ == .__main__.:
     ^\s*"""
 fail_under = 70
