@@ -72,6 +72,8 @@ class UmlCreator:
             raise RuntimeError(f"No namespace found in {self.path}")
         if ent is None:
             raise RuntimeError(f"No class, enum, struct or interface found in {self.path}")
+        # TODO: Run through relations and create entities
+        # for those not found already (mostly interfaces)
         return {self.nsp: [ent]}, ent.relations_to_dot()
 
     def process_line(self, line, ent):
