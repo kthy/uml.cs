@@ -121,7 +121,7 @@ class UmlCreator:
             )
             for nsp, classes in namespaces.items():
                 out.write(f"\n    // {nsp}\n\n")
-                out.write("\n\n".join([ent.to_dot() for ent in classes]))
+                out.write("\n".join([ent.to_dot() for ent in classes]))
             out.write("\n\n")
             out.write("\n".join(relations))
             out.write("\n}\n")
