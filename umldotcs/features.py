@@ -4,7 +4,7 @@
 from abc import ABC, abstractmethod
 from enum import Enum, unique
 
-from umldotcs.helpers import attrs_to_dot, clean_generics
+from umldotcs.helpers import attrs_to_dot, encode_generics
 
 
 @unique
@@ -82,8 +82,8 @@ class Field(FieldOrMethod):
     """A property/field."""
 
     def __init__(self, attrs, access, modifiers, typ, name):
-        self.type = typ
-        self.name = name
+        self.type = encode_generics(typ)
+        self.name = encode_generics(name)
         super().__init__(attrs, access, modifiers)
 
     def __eq__(self, other):
@@ -137,8 +137,8 @@ class Method(FieldOrMethod):
     """A method."""
 
     def __init__(self, attrs, access, modifiers, return_type, signature):
-        self.return_type = return_type
-        self.signature = clean_generics(signature)
+        self.return_type = encode_generics(return_type)
+        self.signature = encode_generics(signature)
         super().__init__(attrs, access, modifiers)
 
     def __eq__(self, other):
