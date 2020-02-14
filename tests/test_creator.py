@@ -1,8 +1,11 @@
 """Test the Creator module."""
 
+from tempfile import NamedTemporaryFile
+
 import pytest
 
 from umldotcs.creator import UmlCreator
+from umldotcs.entities import IMPLEMENTS, UmlClass
 from umldotcs.features import Access, Modifier
 
 
@@ -45,6 +48,37 @@ def test_extract_object():
     assert obj.modifiers == [Modifier.STATIC]
     assert obj.name == "StaticKlass"
     assert obj.implements == ["ICanBeImplemented", "IComparable", "IEquatable_T_"]
+
+
+def test_process_file():
+    """Test UmlCreator.process_file()."""
+    ## Test case: opening a directory
+    creator = UmlCreator(".")
+    dikt, lizt = creator.process_file()
+    assert dikt == {}
+    assert lizt == []
+
+    with NamedTemporaryFile(mode="w") as tmp:
+        ## Test case: opening a file that isn't C# code
+        creator = UmlCreator(tmp.name)
+        with pytest.raises(RuntimeError, match="No namespace"):
+            creator.process_file()
+
+        ## Test case: opening a file that weirdly only has a namespace
+        tmp.write("namespace Foo {\n")
+        tmp.flush()
+        with pytest.raises(RuntimeError, match="No class"):
+            creator.process_file()
+
+        ## Test case: opening a small, valid C# file
+        tmp.write(" public static class Program : IFoo {\n")
+        tmp.write("  public static int Main(string[] args) { }\n")
+        tmp.write(" }\n")
+        tmp.write("}\n")
+        tmp.flush()
+        dikt, lizt = creator.process_file()
+        assert isinstance(dikt["Foo"][0], UmlClass)
+        assert lizt == [f"    Program -> IFoo {IMPLEMENTS}"]
 
 
 def test_tokenize():

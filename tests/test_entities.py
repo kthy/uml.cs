@@ -11,7 +11,7 @@ from umldotcs.entities import (
     UmlEnum,
     UmlInterface,
 )
-from umldotcs.features import Access, Method, Modifier
+from umldotcs.features import Access, Field, Method, Modifier
 
 
 def test_uml_entity___init__():
@@ -100,9 +100,23 @@ def test_uml_entity_parse_entity():
 def test_uml_entity_parse_tokens():
     """Test UmlEntity.parse_tokens(tokens, attr)."""
     klass = UmlClass(["Klass"])
+    attrs = klass.parse_tokens(["}"], ["Attr"])
+    assert klass.methods == []
+    assert attrs == ["Attr"]
+    tokens = "public void Do()".split()
+    klass.parse_tokens(tokens, None)
+    assert klass.methods == [Method(None, Access.PUBLIC, [], "", "Do()")]
+    tokens = "public Guid Id { get; set; }".split()
+    klass.parse_tokens(tokens, None)
+    assert klass.fields == [Field(None, Access.PUBLIC, [], "Guid", "Id")]
+
+    klass = UmlClass(["Klass"])
     tokens = "internal Klass() => this.Blocked();".split()
     klass.parse_tokens(tokens, None)
     assert klass.methods == [Method(None, Access.INTERNAL, [], "", "«Create» Klass()")]
+    tokens = "private readonly List<List<int>> IntMatrix = new List<List<int>>();"
+    klass.parse_tokens(tokens, None)
+    # assert klass.fields == [Field(None, Access.PRIVATE, [], "List&lt;List&lt;int&gt;&gt;", "IntMatrix")]
 
     klass = UmlClass(["Klass"])
     tokens = "public string Concat(string first, string second)".split()
@@ -141,6 +155,47 @@ def test_uml_entity_relations_to_dot():
         f"    Classy -> Extends {EXTENDS}",
         f"    Classy -> Interface {IMPLEMENTS}",
     ]
+
+
+def test_uml_entity_to_dot():
+    """Test UmlEntity.to_dot()."""
+    klass = UmlClass(["Klass"])
+    klass.methods.append(Method(None, Access.PROTECTED, [], "", "«Create» Klass()"))
+    klass.methods.append(Method(None, Access.PUBLIC, [], "int", "GetCount()"))
+    klass.methods.append(Method(["XmlAttr"], Access.INTERNAL, [], "", "Do(string, byte[])"))
+    klass.fields.append(Field(None, Access.PUBLIC, [], "Guid", "Id"))
+    klass.fields.append(Field(["XmlText"], Access.PUBLIC, [], "string", "Name"))
+    klass.fields.append(Field(None, Access.PRIVATE, [Modifier.STATIC], "int", "Count"))
+    assert (
+        klass.to_dot()
+        == """    Klass [
+        color = gray10,
+        label = <<TABLE BGCOLOR="gray99" BORDER="1" CELLBORDER="0" CELLSPACING="0">
+                    <TR><TD PORT="name" COLSPAN="2">Klass</TD></TR>
+                    <HR/>
+                    <TR><TD COLSPAN="2">+Id : Guid</TD></TR>
+                    <TR><TD>+Name : string</TD><TD ALIGN="RIGHT">[XmlText]</TD></TR>
+                    <TR><TD COLSPAN="2"><U>-Count : int</U></TD></TR>
+                    <HR/>
+                    <TR><TD COLSPAN="2">#«Create» Klass()</TD></TR>
+                    <TR><TD COLSPAN="2">+GetCount() : int</TD></TR>
+                    <TR><TD>~Do(string, byte[])</TD><TD ALIGN="RIGHT">[XmlAttr]</TD></TR>
+                </TABLE>>
+    ]
+"""
+    )
+
+    iface = UmlInterface(["IComparable"])
+    assert (
+        iface.to_dot()
+        == """    IComparable [
+        color = darkolivegreen,
+        label = <<TABLE BGCOLOR="darkolivegreen1" BORDER="1" CELLBORDER="0" CELLSPACING="0">
+                    <TR><TD PORT="name" COLSPAN="2">«interface»<BR/>IComparable</TD></TR>
+                </TABLE>>
+    ]
+"""
+    )
 
 
 def test_uml_class_display_name():

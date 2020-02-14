@@ -146,6 +146,10 @@ def test_method_to_dot_without_attrs():
     dot = method.to_dot()
     assert dot == f'{S20}<TR><TD COLSPAN="2"><U>+«Cast»(Klass) : string</U></TD></TR>'
 
+    method = Method(None, Access.PRIVATE, None, "", "Parse(string)")
+    dot = method.to_dot()
+    assert dot == f'{S20}<TR><TD COLSPAN="2">-Parse(string)</TD></TR>'
+
 
 def test_modifier___repr__():
     """Test the __repr__ method of the Modifier class."""
