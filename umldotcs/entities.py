@@ -84,14 +84,10 @@ class UmlEntity(ABC):
         del tokens[0]
         return entity, tokens
 
-    def parse_tokens(self, tokens, attrs):
-        """Parse line for fields and methods."""
-        try:
-            access = Access(tokens[0])
+    def parse_return_type(self, tokens):
+        """Parse tokens. Return return type and leftover tokens."""
+        if tokens[0] == "async":
             del tokens[0]
-        except ValueError:
-            return attrs
-        modifiers, tokens = Modifier.parse_modifiers(tokens)
         return_type = tokens[0]
         if return_type.startswith(self.name + "("):
             return_type = ""
@@ -104,13 +100,47 @@ class UmlEntity(ABC):
             if return_type == "void":
                 return_type = ""
             del tokens[0]
+        return return_type, tokens
+
+    def parse_tokens(self, tokens, attrs):
+        """Parse line for fields and methods."""
+        # Parse access level - NB: if some dolt used implicit
+        # internal access we won't catch the method / field
+        try:
+            access = Access(tokens[0])
+            del tokens[0]
+        except ValueError:
+            return attrs
+
+        # Parse modifiers
+        modifiers, tokens = Modifier.parse_modifiers(tokens)
+
+        # Parse return type
+        return_type, tokens = self.parse_return_type(tokens)
+
+        # Throw away implementation if present
         if CURLY in tokens:
             tokens = tokens[: tokens.index(CURLY)]
         elif ARROW in tokens:
             tokens = tokens[: tokens.index(ARROW)]
+        elif len(tokens) > 1 and tokens[1] == "=":
+            tokens = [tokens[0]]
+
+        # Remove default parameter values
+        while "=" in tokens:
+            idx = tokens.index("=")
+            del tokens[idx : idx + 2]
+            if "(" in tokens[0] and tokens[-1][-1] != ")":
+                tokens[-1] = tokens[-1] + ")"
+
+        # Remove parameter names
         tokens = ["," if "," in t else t for t in tokens]
         tokens = [")" if ")" in t and t[-2:] != "()" else t for t in tokens]
+
+        # Rejoin method / field signature
         signature = " ".join(tokens).replace(" ,", ",").replace(" )", ")")
+
+        # Create Method or Field and add to list
         if "(" in signature:
             self.methods.append(Method(attrs, access, modifiers, return_type, signature))
         else:
