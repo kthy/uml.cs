@@ -21,9 +21,4 @@ def clean_generics(token):
 
 def encode_generics(token):
     """Convert a string like IAmGeneric<Foo,Bar> into IAmGeneric&lt;Foo,Bar&gt;."""
-    token = token.strip(",")
-    while "<" in token and ">" in token:
-        parts = match(r"([^<]+)<([^>]+)>(.*)", token)
-        if parts:
-            token = f"{parts.group(1)}&lt;{parts.group(2).replace(' ', '')}&gt;{parts.group(3)}"
-    return token
+    return token.strip(",").replace("<", "&lt;").replace(">", "&gt;")
