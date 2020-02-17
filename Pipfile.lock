@@ -247,10 +247,10 @@
         },
         "gitdb2": {
             "hashes": [
-                "sha256:0a84c85d07166cefaf10fa4b728a8a1b847a7f0d081e2fbe083185462158c126",
-                "sha256:51380b9d8b977b42ac9fc3a8e17af90a56ffc573ca9c6b79f99033b04f29f457"
+                "sha256:2207d5de990b1abe81960c20337c5e080e0490b4942bb252a40934b1838a78c7",
+                "sha256:6e46b9a55fc23d444b1dd984247df81a98c7b55b84a45ce14f3aa3c77b152118"
             ],
-            "version": "==3.0.0"
+            "version": "==3.0.1"
         },
         "gitpython": {
             "hashes": [
