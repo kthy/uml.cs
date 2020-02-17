@@ -97,29 +97,59 @@ def test_uml_entity_parse_entity():
         assert toks == ["foo"]
 
 
-def test_uml_entity_parse_tokens():
-    """Test UmlEntity.parse_tokens(tokens, attr)."""
+def test_uml_entity_parse_tokens_for_attribute():
+    """Test UmlEntity.parse_tokens(tokens, attr) for attributes."""
     klass = UmlClass(["Klass"])
     attrs = klass.parse_tokens(["}"], ["Attr"])
     assert klass.methods == []
     assert attrs == ["Attr"]
 
-    tokens = "public Guid Id { get; set; }".split()
-    klass.parse_tokens(tokens, None)
-    assert klass.fields[0] == Field(None, Access.PUBLIC, [], "Guid", "Id")
 
-    tokens = "private static readonly string CrLf = Environment.NewLine;".split()
-    klass.parse_tokens(tokens, None)
-    assert klass.fields[1] == Field(
-        None, Access.PRIVATE, [Modifier.STATIC, Modifier.READONLY], "string", "CrLf"
-    )
+def test_uml_entity_parse_tokens_for_fields():
+    """Test UmlEntity.parse_tokens(tokens, attr) for Fields."""
+    line_vs_expected = [
+        ("public Guid Id { get; set; }", Field(None, Access.PUBLIC, [], "Guid", "Id")),
+        (
+            "private static readonly string CrLf = Environment.NewLine;",
+            Field(None, Access.PRIVATE, [Modifier.STATIC, Modifier.READONLY], "string", "CrLf"),
+        ),
+        (
+            "private readonly List<List<int>> IntMatrix = new List<List<int>>();",
+            Field(
+                None,
+                Access.PRIVATE,
+                [Modifier.READONLY],
+                "List&lt;List&lt;int&gt;&gt;",
+                "IntMatrix",
+            ),
+        ),
+        (
+            "private readonly string connection;",
+            Field(None, Access.PRIVATE, [Modifier.READONLY], "string", "connection"),
+        ),
+        (
+            "public virtual string Id { get => Child.Id; }",
+            Field(None, Access.PUBLIC, [Modifier.VIRTUAL], "string", "Id"),
+        ),
+        (
+            "private readonly Dictionary<string, string> mediaTypes = new Dictionary<string, string>()",
+            Field(
+                None,
+                Access.PRIVATE,
+                [Modifier.READONLY],
+                "Dictionary&lt;string, string&gt;",
+                "mediaTypes",
+            ),
+        ),
+    ]
+    for lve in line_vs_expected:
+        klass = UmlClass(["Klass"])
+        klass.parse_tokens(lve[0].split(), None)
+        assert klass.fields == [lve[1]]
 
-    tokens = "private readonly List<List<int>> IntMatrix = new List<List<int>>();".split()
-    klass.parse_tokens(tokens, None)
-    assert klass.fields[2] == Field(
-        None, Access.PRIVATE, [Modifier.READONLY], "List&lt;List&lt;int&gt;&gt;", "IntMatrix"
-    )
 
+def test_uml_entity_parse_tokens_for_methods():
+    """Test UmlEntity.parse_tokens(tokens, attr) for Methods."""
     line_vs_expected = [
         (
             "protected async Task<int> Do(string sql, IEnumerable<object> subs, bool prep = true)",
@@ -139,6 +169,18 @@ def test_uml_entity_parse_tokens():
             Method(None, Access.INTERNAL, [], "", "«Create» Klass()"),
         ),
         (
+            "public Klass(string foo, string bar, bool debug = false)",
+            None,
+            Method(None, Access.PUBLIC, [], "", "«Create» Klass(string, string, bool)"),
+        ),
+        (
+            "public Klass(IDictionary<string, object> data)",
+            None,
+            Method(
+                None, Access.PUBLIC, [], "", "«Create» Klass(IDictionary&lt;string, object&gt;)"
+            ),
+        ),
+        (
             "public override bool Equals(object obj)",
             None,
             Method(None, Access.PUBLIC, [Modifier.OVERRIDE], "bool", "Equals(object)"),
@@ -151,7 +193,7 @@ def test_uml_entity_parse_tokens():
         (
             "public static bool operator <(Klass a, Klass b)",
             None,
-            Method(None, Access.PUBLIC, [Modifier.STATIC], "bool", "operator <(Klass, Klass)"),
+            Method(None, Access.PUBLIC, [Modifier.STATIC], "bool", "operator &lt;(Klass, Klass)"),
         ),
         (
             "public static implicit operator string(Klass m) => m.ToString();",
@@ -226,6 +268,8 @@ def test_uml_class_display_name():
     static_klass = UmlClass(["Classy"], modifiers=[Modifier.STATIC])
     assert static_klass.is_static()
     assert static_klass.display_name() == "<U>Classy</U>"
+    generic_klass = UmlClass(["Classy<T>"])
+    assert generic_klass.display_name() == "Classy&lt;T&gt;"
 
 
 def test_uml_enum_display_name():

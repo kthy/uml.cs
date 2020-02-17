@@ -3,7 +3,7 @@
 
 from abc import ABC, abstractmethod
 from os import linesep
-from re import match
+from re import match, sub
 
 from umldotcs.features import Access, Field, MetaEntity, Method, Modifier
 from umldotcs.helpers import clean_generics
@@ -13,6 +13,9 @@ CURLY = "{"
 
 EXTENDS = "[arrowhead = normal, style = solid]"
 IMPLEMENTS = "[arrowhead = empty, style = dotted]"
+AGGREGATES = "[arrowhead = odiamond, style = solid]"
+COMPOSITES = "[arrowhead = diamond, style = solid]"
+# TODO: aggregation, composition, uses
 
 
 class UmlEntity(ABC):
@@ -24,7 +27,7 @@ class UmlEntity(ABC):
         self.__kwargs = kwargs
         self.fields = []
         self.methods = []
-        self.name = tokens[0]
+        self.name = tokens[0].replace("<", "_").replace(">", "_")
         del tokens[0]
 
         self.namespace = kwargs.get("nsp", "No Namespace Defined")
@@ -89,7 +92,7 @@ class UmlEntity(ABC):
         if tokens[0] == "async":
             del tokens[0]
         return_type = tokens[0]
-        if return_type.startswith(self.name + "("):
+        if return_type.startswith(self.name.partition("_")[0] + "("):
             return_type = ""
             tokens = ["«Create»"] + tokens
         elif return_type in ["explicit", "implicit"]:
@@ -97,6 +100,9 @@ class UmlEntity(ABC):
             return_type = tokens[0].split("(", 1)[0]
             tokens[0] = tokens[0].replace(return_type, "«Cast»")
         else:
+            while return_type.endswith(","):
+                del tokens[0]
+                return_type = f"{return_type} {tokens[0]}"
             if return_type == "void":
                 return_type = ""
             del tokens[0]
@@ -119,26 +125,30 @@ class UmlEntity(ABC):
         return_type, tokens = self.parse_return_type(tokens)
 
         # Throw away implementation if present
+        if ARROW in tokens:
+            tokens = tokens[: tokens.index(ARROW)]
         if CURLY in tokens:
             tokens = tokens[: tokens.index(CURLY)]
-        elif ARROW in tokens:
-            tokens = tokens[: tokens.index(ARROW)]
-        elif len(tokens) > 1 and tokens[1] == "=":
+        if len(tokens) > 1 and tokens[1] == "=":
             tokens = [tokens[0]]
 
         # Remove default parameter values
         while "=" in tokens:
             idx = tokens.index("=")
+            if tokens[idx + 1].endswith(","):
+                tokens[idx - 1] = tokens[idx - 1] + ","
+            elif tokens[idx + 1].endswith(")"):
+                tokens[idx - 1] = tokens[idx - 1] + ")"
             del tokens[idx : idx + 2]
-            if "(" in tokens[0] and tokens[-1][-1] != ")":
-                tokens[-1] = tokens[-1] + ")"
 
         # Remove parameter names
-        tokens = ["," if "," in t else t for t in tokens]
-        tokens = [")" if ")" in t and t[-2:] != "()" else t for t in tokens]
+        tokens = ["," if t[-1] == "," and "<" not in t else t for t in tokens]
+        tokens = [")" if t[-1] == ")" and t[-2] != "(" else t for t in tokens]
 
         # Rejoin method / field signature
         signature = " ".join(tokens).replace(" ,", ",").replace(" )", ")")
+        if signature and signature[-1] == ";":
+            signature = signature[:-1]
 
         # Create Method or Field and add to list
         if "(" in signature:
@@ -188,7 +198,7 @@ class UmlClass(UmlEntity):
     """A class."""
 
     def display_name(self):
-        dname = self.name
+        dname = sub(r"_([^_]+)_", "&lt;\\1&gt;", self.name)
         if self.is_abstract():
             dname = f"<I>{dname}</I>"
         if self.is_static():
