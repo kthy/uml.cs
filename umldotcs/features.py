@@ -3,10 +3,12 @@
 
 from abc import ABC, abstractmethod
 from enum import Enum, unique
+from functools import total_ordering
 
 from umldotcs.helpers import attrs_to_dot, encode_generics
 
 
+@total_ordering
 @unique
 class Access(Enum):
     """A class, field or method access restriction keyword."""
@@ -17,6 +19,21 @@ class Access(Enum):
     PROTECTED = "protected"
     PROTECTEDINTERNAL = "protected internal"
     PUBLIC = "public"
+
+    def __lt__(self, other):
+        if other is None:
+            return False
+        if not isinstance(other, Access):
+            return False
+        values = {
+            "private": 0,
+            "private protected": 1,
+            "internal": 2,
+            "protected internal": 3,
+            "protected": 4,
+            "public": 5,
+        }
+        return values[self.value] < values[other.value]
 
     def __repr__(self):
         return f'Access("{self.value}")'
@@ -69,6 +86,9 @@ class FieldOrMethod(ABC):
             ]
         )
 
+    def __hash__(self):
+        return hash(repr(self))
+
     def is_static(self):
         """Return True if this Field or Method is static."""
         return Modifier.STATIC in self.modifiers
@@ -78,6 +98,7 @@ class FieldOrMethod(ABC):
         """Convert the Field or Method to GraphViz/dot code."""
 
 
+@total_ordering
 class Field(FieldOrMethod):
     """A property/field."""
 
@@ -92,6 +113,13 @@ class Field(FieldOrMethod):
         if not isinstance(other, Field):
             return False
         return all([super().__eq__(other), self.type == other.type, self.name == other.name])
+
+    def __lt__(self, other):
+        if other is None:
+            return False
+        if not isinstance(other, Field):
+            return False
+        return (self.access, self.name) < (other.access, other.name)
 
     def __repr__(self):
         return f'Field({self.attrs}, {self.access}, {self.modifiers}, "{self.type}", "{self.name}")'
@@ -133,6 +161,7 @@ class MetaEntity(Enum):
         yield cls.STRUCT.value
 
 
+@total_ordering
 class Method(FieldOrMethod):
     """A method."""
 
@@ -154,6 +183,13 @@ class Method(FieldOrMethod):
             ]
         )
 
+    def __lt__(self, other):
+        if other is None:
+            return False
+        if not isinstance(other, Method):
+            return False
+        return (self.access, self.signature) < (other.access, other.signature)
+
     def __repr__(self):
         return f'Method({self.attrs}, {self.access}, {self.modifiers}, "{self.return_type}", "{self.signature}")'
 
@@ -162,7 +198,7 @@ class Method(FieldOrMethod):
         return Modifier.ABSTRACT in self.modifiers
 
     def to_dot(self):
-        """Convert the Field to GraphViz/dot code."""
+        """Convert the Method to GraphViz/dot code."""
         dot = '                    <TR><TD ALIGN="LEFT"'
         if not self.attrs:
             dot += ' COLSPAN="2"'

@@ -2,7 +2,7 @@
 
 from umldotcs.features import Access, Field, MetaEntity, Method, Modifier, attrs_to_dot
 
-S20 = 20 * " "
+TR = 20 * " " + '<TR><TD ALIGN="LEFT"'
 
 
 def test_attrs_to_dot():
@@ -11,6 +11,15 @@ def test_attrs_to_dot():
     assert attrs_to_dot([]) == ""
     attrs = ["One", "Two", "Three"]
     assert attrs_to_dot(attrs) == "[One]<BR/>[Two]<BR/>[Three]"
+
+
+def test_access___lt__():
+    """Test the __lt__ method of the Access class."""
+    assert Access.PRIVATE < Access.PRIVATEPROTECTED
+    assert Access.PRIVATEPROTECTED < Access.INTERNAL
+    assert Access.INTERNAL < Access.PROTECTEDINTERNAL
+    assert Access.PROTECTEDINTERNAL < Access.PROTECTED
+    assert Access.PROTECTED < Access.PUBLIC
 
 
 def test_access___repr__():
@@ -64,6 +73,16 @@ def test_field___eq__():
     assert field1 != field4
 
 
+def test_field___lt__():
+    """Test the __lt__ method of the Field class."""
+    field1 = Field(None, Access.PRIVATE, [Modifier.STATIC], "bool", "Glarp")
+    field2 = Field(["XmlText"], Access.INTERNAL, [], "string", "Quux")
+    field3 = Field(None, Access.PROTECTED, [], "void", "Bar")
+    field4 = Field(None, Access.PROTECTED, [], "string", "Foo")
+    field5 = Field(["JsonIgnore"], Access.PUBLIC, [], "Guid", "Id")
+    assert field1 < field2 < field3 < field4 < field5
+
+
 def test_field___repr__():
     """Test the __repr__ method of the Field class."""
     field = Field(["One", "Two"], Access.INTERNAL, [Modifier.STATIC], "string", "Content")
@@ -75,10 +94,7 @@ def test_field_to_dot_with_one_attr():
     """Test Field.to_dot() with a single attribute."""
     field = Field(["XmlText"], Access.PUBLIC, None, "string", "Content")
     dot = field.to_dot()
-    assert (
-        dot
-        == f'{S20}<TR><TD ALIGN="LEFT">+Content : string</TD><TD ALIGN="RIGHT">[XmlText]</TD></TR>'
-    )
+    assert dot == f'{TR}>+Content : string</TD><TD ALIGN="RIGHT">[XmlText]</TD></TR>'
 
 
 def test_field_to_dot_with_more_than_one_attr():
@@ -86,8 +102,7 @@ def test_field_to_dot_with_more_than_one_attr():
     field = Field(["One", "Two"], Access.INTERNAL, [Modifier.STATIC], "string", "Content")
     dot = field.to_dot()
     assert (
-        dot
-        == f'{S20}<TR><TD ALIGN="LEFT"><U>~Content : string</U></TD><TD ALIGN="RIGHT">[One]<BR/>[Two]</TD></TR>'
+        dot == f"{TR}><U>~Content : string</U></TD>" + '<TD ALIGN="RIGHT">[One]<BR/>[Two]</TD></TR>'
     )
 
 
@@ -95,7 +110,7 @@ def test_field_to_dot_without_attrs():
     """Test Field.to_dot() without attributes."""
     field = Field([], Access.PRIVATE, [Modifier.STATIC], "bool", "Boolean")
     dot = field.to_dot()
-    assert dot == f'{S20}<TR><TD ALIGN="LEFT" COLSPAN="2"><U>-Boolean : bool</U></TD></TR>'
+    assert dot == f'{TR} COLSPAN="2"><U>-Boolean : bool</U></TD></TR>'
 
 
 def test_meta_entity___repr__():
@@ -121,6 +136,16 @@ def test_method___eq__():
     assert method1 != method4
 
 
+def test_method___lt__():
+    """Test the __lt__ method of the Method class."""
+    method1 = Method(None, Access.PRIVATE, [Modifier.STATIC], "bool", "Glarp()")
+    method2 = Method(["XmlText"], Access.INTERNAL, [], "string", "Quux()")
+    method3 = Method(None, Access.PROTECTED, [], "void", "Bar()")
+    method4 = Method(None, Access.PROTECTED, [], "string", "Foo()")
+    method5 = Method(["JsonIgnore"], Access.PUBLIC, [], "Guid", "Id()")
+    assert method1 < method2 < method3 < method4 < method5
+
+
 def test_method___repr__():
     """Test the __repr__ method of the Method class."""
     method = Method([], Access.PUBLIC, None, "string", "GetContent()")
@@ -138,21 +163,27 @@ def test_method_to_dot_with_one_attr():
     """Test Method.to_dot() with a single attribute."""
     method = Method(["XmlElement"], Access.PUBLIC, [], "bool", "Equals(object)")
     dot = method.to_dot()
-    assert (
-        dot
-        == f'{S20}<TR><TD ALIGN="LEFT">+Equals(object) : bool</TD><TD ALIGN="RIGHT">[XmlElement]</TD></TR>'
-    )
+    assert dot == f'{TR}>+Equals(object) : bool</TD><TD ALIGN="RIGHT">[XmlElement]</TD></TR>'
 
 
 def test_method_to_dot_without_attrs():
     """Test Method.to_dot() without attributes."""
-    method = Method([], Access.PUBLIC, [Modifier.STATIC], "string", "«Cast»(Klass)")
-    dot = method.to_dot()
-    assert dot == f'{S20}<TR><TD ALIGN="LEFT" COLSPAN="2"><U>+«Cast»(Klass) : string</U></TD></TR>'
-
-    method = Method(None, Access.PRIVATE, None, "", "Parse(string)")
-    dot = method.to_dot()
-    assert dot == f'{S20}<TR><TD ALIGN="LEFT" COLSPAN="2">-Parse(string)</TD></TR>'
+    actual_vs_expected = [
+        (
+            Method(None, Access.PUBLIC, [Modifier.STATIC], "bool", "operator <=(Klass, Klass)"),
+            f'{TR} COLSPAN="2"><U>+operator &lt;=(Klass, Klass) : bool</U></TD></TR>',
+        ),
+        (
+            Method([], Access.PUBLIC, [Modifier.STATIC], "string", "«Cast»(Klass)"),
+            f'{TR} COLSPAN="2"><U>+«Cast»(Klass) : string</U></TD></TR>',
+        ),
+        (
+            Method(None, Access.PRIVATE, None, "", "Parse(string)"),
+            f'{TR} COLSPAN="2">-Parse(string)</TD></TR>',
+        ),
+    ]
+    for ave in actual_vs_expected:
+        assert ave[0].to_dot() == ave[1]
 
 
 def test_modifier___repr__():
