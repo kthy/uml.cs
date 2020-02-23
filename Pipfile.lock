@@ -349,10 +349,10 @@
         },
         "smmap2": {
             "hashes": [
-                "sha256:0555a7bf4df71d1ef4218e4807bbf9b201f910174e6e08af2e138d4e517b4dde",
-                "sha256:29a9ffa0497e7f2be94ca0ed1ca1aa3cd4cf25a1f6b4f5f87f74b46ed91d609a"
+                "sha256:354f2b1be0a847a769b59b0b777efbcd0f60a5503e8ab49b8c079ec92fc1870c",
+                "sha256:503ee18c47935b88ed728d8fd59dadfe04b0f80dbc7e325c1fda6cf2f01c36b2"
             ],
-            "version": "==2.0.5"
+            "version": "==3.0.0"
         },
         "stevedore": {
             "hashes": [
