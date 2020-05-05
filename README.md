@@ -4,6 +4,10 @@
 
 UML class diagram generator for C# code.
 
+## ⚠️ WIP
+
+This is a work in progress. By one person. In his spare time. **Caveat emptor!**
+
 ### Code
 
 [![Requirements Status](https://requires.io/github/kthy/uml.cs/requirements.svg?branch=master)](https://requires.io/github/kthy/uml.cs/requirements/?branch=master)
