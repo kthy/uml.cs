@@ -72,7 +72,7 @@ class UmlCreator:
             raise RuntimeError(f"No namespace found in {self.path}")
         if ent is None:
             raise RuntimeError(f"No class, enum, struct or interface found in {self.path}")
-        # TODO: Run through relations and create entities
+        # TODO: run through relations and create entities
         # for those not found already (mostly interfaces)
         return {self.nsp: [ent]}, ent.relations_to_dot()
 
@@ -114,17 +114,24 @@ class UmlCreator:
             out.write(
                 f"""digraph UML {{
 
-    graph [fontname = "{font} SemiBold", fontsize = 8]
-    edge  [fontname = "{font}", fontsize = 8]
-    node  [fontname = "{font}", fontsize = 8, shape = none, width=0, height=0, margin=0]
+  graph [fontname = "{font} SemiBold", fontsize = 48]
+  edge  [fontname = "{font}", fontsize = 12]
+  node  [fontname = "{font}", fontsize = 12, shape = none, width=0, height=0, margin=0]
 
-    label    = "{label}"
-    labelloc = "t"\n"""
+  label    = "{label}"
+  labelloc = "t"\n"""
             )
             for nsp, classes in namespaces.items():
-                out.write(f"\n    // {nsp}\n\n")
+                cluster_name = nsp.replace(".", "_")
+                out.write(
+                    f"""\n  subgraph cluster_{cluster_name} {{
+    style     = rounded
+    label     = "{nsp}"
+    color     = crimson\n\n"""
+                )
                 out.write("\n".join([ent.to_dot() for ent in classes]))
-            out.write("\n\n")
+                out.write("\n  }\n")
+            out.write("\n")
             out.write("\n".join(relations))
             out.write("\n}\n")
             out.flush()
