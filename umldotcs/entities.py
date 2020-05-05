@@ -15,7 +15,8 @@ EXTENDS = "[arrowhead = normal, style = solid]"
 IMPLEMENTS = "[arrowhead = empty, style = dotted]"
 AGGREGATES = "[arrowhead = odiamond, style = solid]"
 COMPOSITES = "[arrowhead = diamond, style = solid]"
-# TODO: aggregation, composition, uses
+HAS_A = "[arrowhead = vee, style = solid]"
+# TODO: autodetection of aggregation, composition, uses
 
 
 class UmlEntity(ABC):
@@ -208,6 +209,10 @@ class UmlClass(UmlEntity):
 
 class UmlEnum(UmlEntity):
     """An enumeration."""
+
+    def __init__(self, tokens, **kwargs):
+        kwargs["bgcolor"] = "gold"
+        super().__init__(tokens, **kwargs)
 
     def display_name(self):
         return f"«enumeration»<BR/><I>{self.name}</I>"
