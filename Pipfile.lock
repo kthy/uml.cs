@@ -257,11 +257,10 @@
         },
         "isort": {
             "hashes": [
-                "sha256:54da7e92468955c4fceacd0c86bd0ec997b0e1ee80d97f67c35a78b719dccab1",
-                "sha256:6e811fcb295968434526407adb8796944f1988c5b65e8139058f2014cbe100fd"
+                "sha256:cc85800d06e41aae02b9d7d5d074104fa2060e406c76af2283ef6b3b0b1b574d",
+                "sha256:eae6ecb60a336da7abd9695e43e603230348b317dc516a73656623e604b95732"
             ],
-            "index": "pypi",
-            "version": "==4.3.21"
+            "version": "==5.0.1"
         },
         "lazy-object-proxy": {
             "hashes": [
