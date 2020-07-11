@@ -260,10 +260,10 @@
         },
         "isort": {
             "hashes": [
-                "sha256:6ae9cf5414e416954e3421f861cbbfc099b3ace63cb270cc76c6670efd960a0a",
-                "sha256:78661ad751751cb3c181d37302e175a0c644b3714877c073df058c596281d7fd"
+                "sha256:3d8e0d7678b66af1e3a6936f2a380a5d4f3faf4b1b38c6aaa4bed6695c6bdcde",
+                "sha256:639b8084644ceb13a806f42d690273b9d844793ac2f515fbc575ba65dc044de0"
             ],
-            "version": "==5.0.4"
+            "version": "==5.0.9"
         },
         "lazy-object-proxy": {
             "hashes": [
