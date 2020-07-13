@@ -253,10 +253,10 @@
         },
         "gitpython": {
             "hashes": [
-                "sha256:e107af4d873daed64648b4f4beb89f89f0cfbe3ef558fc7821ed2331c2f8da1a",
-                "sha256:ef1d60b01b5ce0040ad3ec20bc64f783362d41fa0822a2742d3586e1f49bb8ac"
+                "sha256:b54969b3262d4647f80ace8e9dd4e3f99ac30cc0f3e766415b349208f810908f",
+                "sha256:b742bc5010d9b69fc027f1be21443bc2ad87ffc81a365e958dbc275f3fe0475b"
             ],
-            "version": "==3.1.3"
+            "version": "==3.1.6"
         },
         "isort": {
             "hashes": [
