@@ -347,10 +347,10 @@
         },
         "stevedore": {
             "hashes": [
-                "sha256:609912b87df5ad338ff8e44d13eaad4f4170a65b79ae9cb0aa5632598994a1b7",
-                "sha256:c4724f8d7b8f6be42130663855d01a9c2414d6046055b5a65ab58a0e38637688"
+                "sha256:79270bd5fb4a052e76932e9fef6e19afa77090c4000f2680eb8c2e887d2e6e36",
+                "sha256:9fb12884b510fdc25f8a883bb390b8ff82f67863fb360891a33135bcb2ce8c54"
             ],
-            "version": "==2.0.1"
+            "version": "==3.1.0"
         },
         "typed-ast": {
             "hashes": [
