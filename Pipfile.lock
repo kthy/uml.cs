@@ -259,10 +259,10 @@
         },
         "isort": {
             "hashes": [
-                "sha256:145072eedc4927cc9c1f9478f2d83b2fc1e6469df4129c02ef4e8c742207a46c",
-                "sha256:ae3007f72a2e9da36febd3454d8be4b175d6ca17eb765841d5fe3d038aede79d"
+                "sha256:723de131d9ae9d2561844f0ee525ce33a396a11bcda57174f036ed5ab3d6a122",
+                "sha256:cdca22530d093ed16983ba52c41560fa0219d1b958e44fd2ae2995dcc7b785be"
             ],
-            "version": "==5.1.4"
+            "version": "==5.3.0"
         },
         "lazy-object-proxy": {
             "hashes": [
