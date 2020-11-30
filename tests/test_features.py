@@ -45,7 +45,10 @@ def test_parse_access():
     assert Access.parse_access(tail) == (Access.INTERNAL, tail)
     assert Access.parse_access(["internal"] + tail) == (Access.INTERNAL, tail)
     assert Access.parse_access(["private"] + tail) == (Access.PRIVATE, tail)
-    assert Access.parse_access(["private", "protected"] + tail) == (Access.PRIVATEPROTECTED, tail,)
+    assert Access.parse_access(["private", "protected"] + tail) == (
+        Access.PRIVATEPROTECTED,
+        tail,
+    )
     assert Access.parse_access(["protected"] + tail) == (Access.PROTECTED, tail)
     assert Access.parse_access(["protected", "internal"] + tail) == (
         Access.PROTECTEDINTERNAL,

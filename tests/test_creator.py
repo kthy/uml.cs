@@ -98,7 +98,10 @@ def test_tokenize():
                 "IEquatable<Klass>",
             ],
         ),
-        ("internal Klass() => this.Blocked();", ["internal", "Klass()", "=>", "this.Blocked();"],),
+        (
+            "internal Klass() => this.Blocked();",
+            ["internal", "Klass()", "=>", "this.Blocked();"],
+        ),
         (
             "public static implicit operator string(Klass k) => k.ToString();",
             [
