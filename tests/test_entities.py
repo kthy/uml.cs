@@ -74,8 +74,8 @@ def test_uml_entity_format_href():
     """Test UmlEntity.format_href()."""
     entity = UmlClass(["UmlCsDll"], **dict(nsp="Uml.Cs.Dll"))
     assert entity.repo_link == ""
-    entity.format_href("https://github.com/kthy/uml.cs/blob/master/tests/sln")
-    href = "https://github.com/kthy/uml.cs/blob/master/tests/sln/Uml.Cs.Dll/UmlCsDll.cs"
+    entity.format_href("https://github.com/kthy/uml.cs/blob/main/tests/sln")
+    href = "https://github.com/kthy/uml.cs/blob/main/tests/sln/Uml.Cs.Dll/UmlCsDll.cs"
     assert entity.repo_link == f'HREF="{href}" TARGET="_blank" TITLE="UmlCsDll.cs @ github.com"'
 
 

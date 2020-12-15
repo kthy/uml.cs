@@ -35,5 +35,5 @@ if __name__ == "__main__":
             run_with_separator(["pylint", "--extension-pkg-whitelist=lxml.etree", "umldotcs"])
             run_with_separator(["bandit", "--recursive", "--format", "txt", "umldotcs"])
 
-    if Repo(".").git.diff("origin/master", ".travis.yml"):
+    if Repo(".").git.diff("origin/main", ".travis.yml"):
         run_with_separator(["travis", "lint"])
