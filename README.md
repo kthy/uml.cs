@@ -17,7 +17,7 @@ This is a work in progress. By one person. In his spare time. **Caveat emptor!**
 
 ### CI
 
-[![Build Status](https://travis-ci.org/kthy/uml.cs.svg?branch=main)](https://travis-ci.org/kthy/uml.cs)
+[![Build Status](https://travis-ci.com/kthy/uml.cs.svg?branch=main)](https://travis-ci.com/kthy/uml.cs)
 [![Codecov Status](https://codecov.io/gh/kthy/uml.cs/branch/main/graph/badge.svg)](https://codecov.io/gh/kthy/uml.cs)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=kthy_uml.cs&metric=alert_status)](https://sonarcloud.io/dashboard?id=kthy_uml.cs)
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=kthy_uml.cs&metric=sqale_index)](https://sonarcloud.io/dashboard?id=kthy_uml.cs)
