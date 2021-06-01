@@ -31,9 +31,6 @@ jobs:
     - name: Run tests
       run: |
         pipenv run test
-    - name: Look for Coverage reports
-      run: |
-        ls -la ${{runner.workspace}}/uml.cs/.coverage
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v1
       with:
