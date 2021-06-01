@@ -12,17 +12,14 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ['3.6', '3.7', '3.8', '3.9', '3.10-dev']
 
     steps:
     - name: Checkout repo
       uses: actions/checkout@v2
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: Set up Python 3.6
       uses: actions/setup-python@v2
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: '3.6'
     - name: Install pipenv
       uses: dschep/install-pipenv-action@v1
     - name: Install dependencies
@@ -35,7 +32,6 @@ jobs:
       run: |
         pipenv run test
     - name: Upload coverage to Codecov
-      if: matrix.python-version == 3.6
       uses: codecov/codecov-action@v1
       with:
         fail_ci_if_error: true
