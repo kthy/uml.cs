@@ -10,14 +10,13 @@ This is a work in progress. By one person. In his spare time. **Caveat emptor!**
 
 ### Code
 
-[![Requirements Status](https://requires.io/github/kthy/uml.cs/requirements.svg?branch=main)](https://requires.io/github/kthy/uml.cs/requirements/?branch=main)
 [![Updates](https://pyup.io/repos/github/kthy/uml.cs/shield.svg)](https://pyup.io/repos/github/kthy/uml.cs/)
 [![Conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-blue.svg)](https://www.conventionalcommits.org/en/v1.0.0/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 ### CI
 
-[![Build Status](https://travis-ci.com/kthy/uml.cs.svg?branch=main)](https://travis-ci.com/kthy/uml.cs)
+![Build status][https://github.com/kthy/uml.cs/workflows/build/badge.svg]
 [![Codecov Status](https://codecov.io/gh/kthy/uml.cs/branch/main/graph/badge.svg)](https://codecov.io/gh/kthy/uml.cs)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=kthy_uml.cs&metric=alert_status)](https://sonarcloud.io/dashboard?id=kthy_uml.cs)
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=kthy_uml.cs&metric=sqale_index)](https://sonarcloud.io/dashboard?id=kthy_uml.cs)

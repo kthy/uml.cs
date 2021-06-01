@@ -1,0 +1,41 @@
+name: build
+
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.6', '3.7', '3.8', '3.9', '3.10-dev']
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install pipenv
+      uses: dschep/install-pipenv-action@v1
+    - name: Install dependencies
+      run: |
+        pipenv install
+    - name: Paint it black
+      run: |
+        pipenv run black_ci
+    - name: Run tests
+      run: |
+        pipenv run test
+    - name: Upload coverage to Codecov
+      if: matrix.python-version == 3.6
+      uses: codecov/codecov-action@v1
+      with:
+        fail_ci_if_error: true
