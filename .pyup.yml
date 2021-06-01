@@ -1,5 +1,10 @@
 update: all
-pr_prefix: pyup
+schedule: "every week on monday"
 requirements:
   - Pipfile
   - Pipfile.lock
+assignees:
+  - kthy
+pr_prefix: pyup
+commit_message_template_pin: "fix: pin **{package_name}** to latest version {new_version}"
+commit_message_template_update: "fix: update **{package_name}** from {old_version} to {new_version}"
