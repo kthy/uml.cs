@@ -491,9 +491,10 @@
         },
         "rope": {
             "hashes": [
-                "sha256:64e6d747532e1f5c8009ec5aae3e5523a5bcedf516f39a750d57d8ed749d90da"
+                "sha256:edf2ed3c9b35a8814752ffd3ea55b293c791e5087e252461de898e953cf9c146",
+                "sha256:f87662c565086d660fc855cc07f37820267876634c3e9e51bddb32ff51547268"
             ],
-            "version": "==0.19.0"
+            "version": "==0.23.0"
         },
         "six": {
             "hashes": [
