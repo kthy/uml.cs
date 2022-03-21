@@ -347,10 +347,10 @@
         },
         "bandit": {
             "hashes": [
-                "sha256:216be4d044209fa06cf2a3e51b319769a51be8318140659719aa7a115c35ed07",
-                "sha256:8a4c7415254d75df8ff3c3b15cfe9042ecee628a1e40b44c15a98890fbfc2608"
+                "sha256:2d63a8c573417bae338962d4b9b06fbc6080f74ecd955a092849e1e65c717bd2",
+                "sha256:412d3f259dab4077d0e7f0c11f50f650cc7d10db905d98f6520a95a18049658a"
             ],
-            "version": "==1.7.0"
+            "version": "==1.7.4"
         },
         "colorama": {
             "hashes": [
