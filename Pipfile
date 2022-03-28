@@ -11,7 +11,7 @@ pylint = "*"
 rope = "*"
 
 [packages]
-black = "==21.5b2"
+black = "==22.1.0"
 click = "*"
 iniconfig = "*"
 pytest = "*"
