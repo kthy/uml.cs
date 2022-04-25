@@ -446,10 +446,10 @@
         },
         "pylint": {
             "hashes": [
-                "sha256:c149694cfdeaee1aa2465e6eaab84c87a881a7d55e6e93e09466be7164764d1e",
-                "sha256:dab221658368c7a05242e673c275c488670144123f4bd262b2777249c1c0de9b"
+                "sha256:13ddbbd8872c804574149e81197c28877eba75224ba6b76cd8652fc31df55c1c",
+                "sha256:911d3a97c808f7554643bcc5416028cfdc42eae34ed129b150741888c688d5d5"
             ],
-            "version": "==2.13.5"
+            "version": "==2.13.7"
         },
         "pyyaml": {
             "hashes": [
