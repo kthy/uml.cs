@@ -161,7 +161,7 @@
         },
         "regex": {
             "hashes": [],
-            "version": "==2022.7.9"
+            "version": "==2022.7.24"
         },
         "toml": {
             "hashes": [
