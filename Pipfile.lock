@@ -306,11 +306,8 @@
             "version": "==0.7.0"
         },
         "pbr": {
-            "hashes": [
-                "sha256:e547125940bcc052856ded43be8e101f63828c2d94239ffbe2b327ba3d5ccf0a",
-                "sha256:e8dca2f4b43560edef58813969f52a56cef023146cbb8931626db80e6c1c4308"
-            ],
-            "version": "==5.9.0"
+            "hashes": [],
+            "version": "==5.10.0"
         },
         "pylint": {
             "hashes": [],
