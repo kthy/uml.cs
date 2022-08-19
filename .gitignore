@@ -132,8 +132,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-.sonarqube/*
-
 #######################################################################################
 ## https://github.com/github/gitignore/blob/master/Global/VisualStudioCode.gitignore ##
 #######################################################################################

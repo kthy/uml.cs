@@ -18,8 +18,6 @@ This is a work in progress. By one person. In his spare time. **Caveat emptor!**
 
 ![Build status](https://github.com/kthy/uml.cs/workflows/build/badge.svg)
 [![Codecov Status](https://codecov.io/gh/kthy/uml.cs/branch/main/graph/badge.svg)](https://codecov.io/gh/kthy/uml.cs)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=kthy_uml.cs&metric=alert_status)](https://sonarcloud.io/dashboard?id=kthy_uml.cs)
-[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=kthy_uml.cs&metric=sqale_index)](https://sonarcloud.io/dashboard?id=kthy_uml.cs)
 
 ## Usage
 
