@@ -407,12 +407,8 @@
             "version": "==1.3.0"
         },
         "setuptools": {
-            "hashes": [
-                "sha256:10602cd0a6f5feab6656e9587f9075292ab777c5200f3bf00293ecd23d9f2788",
-                "sha256:d2e010624c781b26ad6629a8de9832327cf853dea93894487979e55f9ad06857"
-            ],
-            "markers": "python_version >= '3.7'",
-            "version": "==65.1.0"
+            "hashes": [],
+            "version": "==65.2.0"
         },
         "smmap": {
             "hashes": [
