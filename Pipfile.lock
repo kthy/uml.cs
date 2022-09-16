@@ -186,7 +186,7 @@
     "develop": {
         "astroid": {
             "hashes": [],
-            "version": "==2.12.5"
+            "version": "==2.12.9"
         },
         "bandit": {
             "hashes": [
@@ -305,7 +305,7 @@
         },
         "pylint": {
             "hashes": [],
-            "version": "==2.15.0"
+            "version": "==2.15.2"
         },
         "pyparsing": {
             "hashes": [
