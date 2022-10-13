@@ -26,7 +26,7 @@
         },
         "black": {
             "hashes": [],
-            "version": "==22.8.0"
+            "version": "==22.10.0"
         },
         "click": {
             "hashes": [
@@ -116,18 +116,14 @@
             "version": "==2.0.1"
         },
         "typing-extensions": {
-            "hashes": [
-                "sha256:25642c956049920a5aa49edcdd6ab1e06d7e5d467fc00e0506c44ac86fbfca02",
-                "sha256:e6d2677a32f47fc7eb2795db1dd15c1f34eff616bcaf2cfb5e997f854fa1c4a6"
-            ],
-            "markers": "python_version < '3.10'",
-            "version": "==4.3.0"
+            "hashes": [],
+            "version": "==4.4.0"
         }
     },
     "develop": {
         "astroid": {
             "hashes": [],
-            "version": "==2.12.10"
+            "version": "==2.12.11"
         },
         "bandit": {
             "hashes": [
@@ -154,12 +150,8 @@
             "version": "==4.0.9"
         },
         "gitpython": {
-            "hashes": [
-                "sha256:1c885ce809e8ba2d88a29befeb385fcea06338d3640712b59ca623c220bb5704",
-                "sha256:5b68b000463593e05ff2b261acff0ff0972df8ab1b70d3cdbd41b546c8b8fc3d"
-            ],
-            "index": "pypi",
-            "version": "==3.1.27"
+            "hashes": [],
+            "version": "==3.1.28"
         },
         "isort": {
             "hashes": [
@@ -246,7 +238,7 @@
         },
         "pylint": {
             "hashes": [],
-            "version": "==2.15.3"
+            "version": "==2.15.4"
         },
         "pyparsing": {
             "hashes": [
@@ -344,12 +336,8 @@
             "version": "==0.11.5"
         },
         "typing-extensions": {
-            "hashes": [
-                "sha256:25642c956049920a5aa49edcdd6ab1e06d7e5d467fc00e0506c44ac86fbfca02",
-                "sha256:e6d2677a32f47fc7eb2795db1dd15c1f34eff616bcaf2cfb5e997f854fa1c4a6"
-            ],
-            "markers": "python_version < '3.10'",
-            "version": "==4.3.0"
+            "hashes": [],
+            "version": "==4.4.0"
         },
         "wrapt": {
             "hashes": [
