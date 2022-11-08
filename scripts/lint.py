@@ -29,7 +29,7 @@ if __name__ == "__main__":
     )
 
     if ISORT.returncode == 0:
-        BLACK = run_with_separator(["black", "-l100", "-tpy38", "."])
+        BLACK = run_with_separator(["black", "-l100", "-tpy310", "."])
 
         if BLACK.returncode == 0:
             run_with_separator(["pylint", "--extension-pkg-whitelist=lxml.etree", "umldotcs"])
