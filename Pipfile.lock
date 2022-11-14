@@ -158,12 +158,8 @@
             "version": "==0.10.2"
         },
         "platformdirs": {
-            "hashes": [
-                "sha256:0cb405749187a194f444c25c82ef7225232f11564721eabffc6ec70df83b11cb",
-                "sha256:6e52c21afff35cb659c6e52d8b4d61b9bd544557180440538f255d9382c8cbe0"
-            ],
-            "markers": "python_version >= '3.7'",
-            "version": "==2.5.3"
+            "hashes": [],
+            "version": "==2.5.4"
         },
         "pluggy": {
             "hashes": [
@@ -313,12 +309,8 @@
             "version": "==5.11.0"
         },
         "platformdirs": {
-            "hashes": [
-                "sha256:0cb405749187a194f444c25c82ef7225232f11564721eabffc6ec70df83b11cb",
-                "sha256:6e52c21afff35cb659c6e52d8b4d61b9bd544557180440538f255d9382c8cbe0"
-            ],
-            "markers": "python_version >= '3.7'",
-            "version": "==2.5.3"
+            "hashes": [],
+            "version": "==2.5.4"
         },
         "pylint": {
             "hashes": [
