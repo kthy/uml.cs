@@ -127,12 +127,8 @@
             "version": "==6.5.0"
         },
         "exceptiongroup": {
-            "hashes": [
-                "sha256:4d6c0aa6dd825810941c792f53d7b8d71da26f5e5f84f20f9508e8f2d33b140a",
-                "sha256:73866f7f842ede6cb1daa42c4af078e2035e5f7607f0e2c762cc51bb31bbe7b2"
-            ],
-            "markers": "python_version < '3.11'",
-            "version": "==1.0.1"
+            "hashes": [],
+            "version": "==1.0.2"
         },
         "iniconfig": {
             "hashes": [
