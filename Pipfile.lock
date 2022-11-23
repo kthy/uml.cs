@@ -127,12 +127,8 @@
             "version": "==6.5.0"
         },
         "exceptiongroup": {
-            "hashes": [
-                "sha256:4d6c0aa6dd825810941c792f53d7b8d71da26f5e5f84f20f9508e8f2d33b140a",
-                "sha256:73866f7f842ede6cb1daa42c4af078e2035e5f7607f0e2c762cc51bb31bbe7b2"
-            ],
-            "markers": "python_version < '3.11'",
-            "version": "==1.0.1"
+            "hashes": [],
+            "version": "==1.0.4"
         },
         "iniconfig": {
             "hashes": [
@@ -158,20 +154,12 @@
             "version": "==21.3"
         },
         "pathspec": {
-            "hashes": [
-                "sha256:46846318467efc4556ccfd27816e004270a9eeeeb4d062ce5e6fc7a87c573f93",
-                "sha256:7ace6161b621d31e7902eb6b5ae148d12cfd23f4a249b9ffb6b9fee12084323d"
-            ],
-            "markers": "python_version >= '3.7'",
-            "version": "==0.10.1"
+            "hashes": [],
+            "version": "==0.10.2"
         },
         "platformdirs": {
-            "hashes": [
-                "sha256:0cb405749187a194f444c25c82ef7225232f11564721eabffc6ec70df83b11cb",
-                "sha256:6e52c21afff35cb659c6e52d8b4d61b9bd544557180440538f255d9382c8cbe0"
-            ],
-            "markers": "python_version >= '3.7'",
-            "version": "==2.5.3"
+            "hashes": [],
+            "version": "==2.5.4"
         },
         "pluggy": {
             "hashes": [
@@ -216,12 +204,8 @@
     },
     "develop": {
         "astroid": {
-            "hashes": [
-                "sha256:1c00a14f5a3ed0339d38d2e2e5b74ea2591df5861c0936bb292b84ccf3a78d83",
-                "sha256:72702205200b2a638358369d90c222d74ebc376787af8fb2f7f2a86f7b5cc85f"
-            ],
-            "markers": "python_full_version >= '3.7.2'",
-            "version": "==2.12.12"
+            "hashes": [],
+            "version": "==2.12.13"
         },
         "bandit": {
             "hashes": [
@@ -321,20 +305,12 @@
             "version": "==5.11.0"
         },
         "platformdirs": {
-            "hashes": [
-                "sha256:0cb405749187a194f444c25c82ef7225232f11564721eabffc6ec70df83b11cb",
-                "sha256:6e52c21afff35cb659c6e52d8b4d61b9bd544557180440538f255d9382c8cbe0"
-            ],
-            "markers": "python_version >= '3.7'",
-            "version": "==2.5.3"
+            "hashes": [],
+            "version": "==2.5.4"
         },
         "pylint": {
-            "hashes": [
-                "sha256:3b120505e5af1d06a5ad76b55d8660d44bf0f2fc3c59c2bdd94e39188ee3a4df",
-                "sha256:c2108037eb074334d9e874dc3c783752cc03d0796c88c9a9af282d0f161a1004"
-            ],
-            "index": "pypi",
-            "version": "==2.15.5"
+            "hashes": [],
+            "version": "==2.15.6"
         },
         "pyparsing": {
             "hashes": [
@@ -415,12 +391,8 @@
             "version": "==5.0.0"
         },
         "stevedore": {
-            "hashes": [
-                "sha256:02518a8f0d6d29be8a445b7f2ac63753ff29e8f2a2faa01777568d5500d777a6",
-                "sha256:3b1cbd592a87315f000d05164941ee5e164899f8fc0ce9a00bb0f321f40ef93e"
-            ],
-            "markers": "python_version >= '3.8'",
-            "version": "==4.1.0"
+            "hashes": [],
+            "version": "==4.1.1"
         },
         "tomli": {
             "hashes": [
