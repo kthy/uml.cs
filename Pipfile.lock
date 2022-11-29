@@ -232,12 +232,8 @@
             "version": "==0.3.6"
         },
         "gitdb": {
-            "hashes": [
-                "sha256:8033ad4e853066ba6ca92050b9df2f89301b8fc8bf7e9324d412a63f8bf1a8fd",
-                "sha256:bac2fd45c0a1c9cf619e63a90d62bdc63892ef92387424b855792a6cabe789aa"
-            ],
-            "markers": "python_version >= '3.6'",
-            "version": "==4.0.9"
+            "hashes": [],
+            "version": "==4.0.10"
         },
         "gitpython": {
             "hashes": [
@@ -375,12 +371,8 @@
             "version": "==6.0"
         },
         "rope": {
-            "hashes": [
-                "sha256:27c122389fa5cdffa00c24aa6c63704e0933650dbc7d4d4002537947d6cfb7b7",
-                "sha256:7d5a34235ff4a242b71f249b5617a9c54112e145ba4701a41e2f4f96942e5899"
-            ],
-            "index": "pypi",
-            "version": "==1.4.0"
+            "hashes": [],
+            "version": "==1.5.1"
         },
         "smmap": {
             "hashes": [
