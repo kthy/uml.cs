@@ -123,12 +123,8 @@
             "version": "==0.4.3"
         },
         "packaging": {
-            "hashes": [
-                "sha256:dd47c42927d89ab911e606518907cc2d3a1f38bbd026385970643f9c5b8ecfeb",
-                "sha256:ef103e05f519cdc783ae24ea4e2e0f508a9c99b2d4969652eed6a2e1ea5bd522"
-            ],
-            "markers": "python_version >= '3.6'",
-            "version": "==21.3"
+            "hashes": [],
+            "version": "==22.0"
         },
         "pathspec": {
             "hashes": [],
@@ -262,12 +258,8 @@
             "version": "==0.7.0"
         },
         "packaging": {
-            "hashes": [
-                "sha256:dd47c42927d89ab911e606518907cc2d3a1f38bbd026385970643f9c5b8ecfeb",
-                "sha256:ef103e05f519cdc783ae24ea4e2e0f508a9c99b2d4969652eed6a2e1ea5bd522"
-            ],
-            "markers": "python_version >= '3.6'",
-            "version": "==21.3"
+            "hashes": [],
+            "version": "==22.0"
         },
         "pbr": {
             "hashes": [
