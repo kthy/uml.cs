@@ -17,12 +17,8 @@
     },
     "default": {
         "attrs": {
-            "hashes": [
-                "sha256:29adc2665447e5191d0e7c568fde78b21f9672d344281d0c6e1ab085429b22b6",
-                "sha256:86efa402f67bf2df34f51a335487cf46b1ec130d02b8d39fd248abfd30da551c"
-            ],
-            "markers": "python_version >= '3.5'",
-            "version": "==22.1.0"
+            "hashes": [],
+            "version": "==22.2.0"
         },
         "black": {
             "hashes": [],
@@ -46,11 +42,11 @@
         },
         "coverage": {
             "hashes": [],
-            "version": "==7.0.0"
+            "version": "==7.0.1"
         },
         "exceptiongroup": {
             "hashes": [],
-            "version": "==1.0.4"
+            "version": "==1.1.0"
         },
         "iniconfig": {
             "hashes": [
@@ -163,7 +159,7 @@
         },
         "isort": {
             "hashes": [],
-            "version": "==5.11.3"
+            "version": "==5.11.4"
         },
         "lazy-object-proxy": {
             "hashes": [
