@@ -115,7 +115,7 @@
     "develop": {
         "astroid": {
             "hashes": [],
-            "version": "==2.12.13"
+            "version": "==2.13.2"
         },
         "bandit": {
             "hashes": [
