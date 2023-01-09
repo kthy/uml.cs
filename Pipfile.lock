@@ -61,7 +61,7 @@
         },
         "packaging": {
             "hashes": [],
-            "version": "==22.0"
+            "version": "==23.0"
         },
         "pathspec": {
             "hashes": [],
@@ -192,7 +192,7 @@
         },
         "packaging": {
             "hashes": [],
-            "version": "==22.0"
+            "version": "==23.0"
         },
         "pbr": {
             "hashes": [
