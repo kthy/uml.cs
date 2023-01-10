@@ -42,19 +42,15 @@
         },
         "coverage": {
             "hashes": [],
-            "version": "==7.0.1"
+            "version": "==7.0.4"
         },
         "exceptiongroup": {
             "hashes": [],
             "version": "==1.1.0"
         },
         "iniconfig": {
-            "hashes": [
-                "sha256:011e24c64b7f47f6ebd835bb12a743f2fbe9a26d4cecaa7f53bc4f35ee9da8b3",
-                "sha256:bc3af051d7d14b2ee5ef9969666def0cd1a000e121eaea580d4a313df4b37f32"
-            ],
-            "index": "pypi",
-            "version": "==1.1.1"
+            "hashes": [],
+            "version": "==2.0.0"
         },
         "mypy-extensions": {
             "hashes": [
@@ -65,7 +61,7 @@
         },
         "packaging": {
             "hashes": [],
-            "version": "==22.0"
+            "version": "==23.0"
         },
         "pathspec": {
             "hashes": [],
@@ -73,7 +69,7 @@
         },
         "platformdirs": {
             "hashes": [],
-            "version": "==2.6.0"
+            "version": "==2.6.2"
         },
         "pluggy": {
             "hashes": [
@@ -119,7 +115,7 @@
     "develop": {
         "astroid": {
             "hashes": [],
-            "version": "==2.12.13"
+            "version": "==2.13.2"
         },
         "bandit": {
             "hashes": [
@@ -150,41 +146,16 @@
             "version": "==4.0.10"
         },
         "gitpython": {
-            "hashes": [
-                "sha256:41eea0deec2deea139b459ac03656f0dd28fc4a3387240ec1d3c259a2c47850f",
-                "sha256:cc36bfc4a3f913e66805a28e84703e419d9c264c1077e537b54f0e1af85dbefd"
-            ],
-            "index": "pypi",
-            "version": "==3.1.29"
+            "hashes": [],
+            "version": "==3.1.30"
         },
         "isort": {
             "hashes": [],
             "version": "==5.11.4"
         },
         "lazy-object-proxy": {
-            "hashes": [
-                "sha256:0c1c7c0433154bb7c54185714c6929acc0ba04ee1b167314a779b9025517eada",
-                "sha256:14010b49a2f56ec4943b6cf925f597b534ee2fe1f0738c84b3bce0c1a11ff10d",
-                "sha256:4e2d9f764f1befd8bdc97673261b8bb888764dfdbd7a4d8f55e4fbcabb8c3fb7",
-                "sha256:4fd031589121ad46e293629b39604031d354043bb5cdf83da4e93c2d7f3389fe",
-                "sha256:5b51d6f3bfeb289dfd4e95de2ecd464cd51982fe6f00e2be1d0bf94864d58acd",
-                "sha256:6850e4aeca6d0df35bb06e05c8b934ff7c533734eb51d0ceb2d63696f1e6030c",
-                "sha256:6f593f26c470a379cf7f5bc6db6b5f1722353e7bf937b8d0d0b3fba911998858",
-                "sha256:71d9ae8a82203511a6f60ca5a1b9f8ad201cac0fc75038b2dc5fa519589c9288",
-                "sha256:7e1561626c49cb394268edd00501b289053a652ed762c58e1081224c8d881cec",
-                "sha256:8f6ce2118a90efa7f62dd38c7dbfffd42f468b180287b748626293bf12ed468f",
-                "sha256:ae032743794fba4d171b5b67310d69176287b5bf82a21f588282406a79498891",
-                "sha256:afcaa24e48bb23b3be31e329deb3f1858f1f1df86aea3d70cb5c8578bfe5261c",
-                "sha256:b70d6e7a332eb0217e7872a73926ad4fdc14f846e85ad6749ad111084e76df25",
-                "sha256:c219a00245af0f6fa4e95901ed28044544f50152840c5b6a3e7b2568db34d156",
-                "sha256:ce58b2b3734c73e68f0e30e4e725264d4d6be95818ec0a0be4bb6bf9a7e79aa8",
-                "sha256:d176f392dbbdaacccf15919c77f526edf11a34aece58b55ab58539807b85436f",
-                "sha256:e20bfa6db17a39c706d24f82df8352488d2943a3b7ce7d4c22579cb89ca8896e",
-                "sha256:eac3a9a5ef13b332c059772fd40b4b1c3d45a3a2b05e33a361dee48e54a4dad0",
-                "sha256:eb329f8d8145379bf5dbe722182410fe8863d186e51bf034d2075eb8d85ee25b"
-            ],
-            "markers": "python_version >= '3.7'",
-            "version": "==1.8.0"
+            "hashes": [],
+            "version": "==1.9.0"
         },
         "mccabe": {
             "hashes": [
@@ -196,7 +167,7 @@
         },
         "packaging": {
             "hashes": [],
-            "version": "==22.0"
+            "version": "==23.0"
         },
         "pbr": {
             "hashes": [
@@ -208,11 +179,11 @@
         },
         "platformdirs": {
             "hashes": [],
-            "version": "==2.6.0"
+            "version": "==2.6.2"
         },
         "pylint": {
             "hashes": [],
-            "version": "==2.15.9"
+            "version": "==2.15.10"
         },
         "pyparsing": {
             "hashes": [
