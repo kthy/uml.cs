@@ -166,12 +166,8 @@
             "version": "==23.0"
         },
         "pbr": {
-            "hashes": [
-                "sha256:b97bc6695b2aff02144133c2e7399d5885223d42b7912ffaec2ca3898e673bfe",
-                "sha256:db2317ff07c84c4c63648c9064a79fe9d9f5c7ce85a9099d4b6258b3db83225a"
-            ],
-            "markers": "python_version >= '2.6'",
-            "version": "==5.11.0"
+            "hashes": [],
+            "version": "==5.11.1"
         },
         "platformdirs": {
             "hashes": [],
