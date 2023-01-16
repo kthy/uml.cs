@@ -42,7 +42,7 @@
         },
         "coverage": {
             "hashes": [],
-            "version": "==7.0.4"
+            "version": "==7.0.5"
         },
         "exceptiongroup": {
             "hashes": [],
@@ -88,12 +88,8 @@
             "version": "==3.0.9"
         },
         "pytest": {
-            "hashes": [
-                "sha256:892f933d339f068883b6fd5a459f03d85bfcb355e4981e146d2c7616c21fef71",
-                "sha256:c4014eb40e10f11f355ad4e3c2fb2c6c6d1919c73f3b5a433de4708202cade59"
-            ],
-            "index": "pypi",
-            "version": "==7.2.0"
+            "hashes": [],
+            "version": "==7.2.1"
         },
         "pytest-cov": {
             "hashes": [
@@ -170,12 +166,8 @@
             "version": "==23.0"
         },
         "pbr": {
-            "hashes": [
-                "sha256:b97bc6695b2aff02144133c2e7399d5885223d42b7912ffaec2ca3898e673bfe",
-                "sha256:db2317ff07c84c4c63648c9064a79fe9d9f5c7ce85a9099d4b6258b3db83225a"
-            ],
-            "markers": "python_version >= '2.6'",
-            "version": "==5.11.0"
+            "hashes": [],
+            "version": "==5.11.1"
         },
         "platformdirs": {
             "hashes": [],
