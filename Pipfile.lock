@@ -147,7 +147,7 @@
         },
         "isort": {
             "hashes": [],
-            "version": "==5.11.4"
+            "version": "==5.12.0"
         },
         "lazy-object-proxy": {
             "hashes": [],
