@@ -42,7 +42,7 @@
         },
         "coverage": {
             "hashes": [],
-            "version": "==7.0.5"
+            "version": "==7.1.0"
         },
         "exceptiongroup": {
             "hashes": [],
@@ -65,7 +65,7 @@
         },
         "pathspec": {
             "hashes": [],
-            "version": "==0.10.3"
+            "version": "==0.11.0"
         },
         "platformdirs": {
             "hashes": [],
@@ -111,7 +111,7 @@
     "develop": {
         "astroid": {
             "hashes": [],
-            "version": "==2.13.2"
+            "version": "==2.13.3"
         },
         "bandit": {
             "hashes": [
@@ -147,7 +147,7 @@
         },
         "isort": {
             "hashes": [],
-            "version": "==5.11.4"
+            "version": "==5.12.0"
         },
         "lazy-object-proxy": {
             "hashes": [],
@@ -237,7 +237,7 @@
         },
         "rope": {
             "hashes": [],
-            "version": "==1.6.0"
+            "version": "==1.7.0"
         },
         "smmap": {
             "hashes": [
