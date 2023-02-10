@@ -22,7 +22,7 @@
         },
         "black": {
             "hashes": [],
-            "version": "==22.12.0"
+            "version": "==23.1.0"
         },
         "click": {
             "hashes": [
@@ -53,11 +53,8 @@
             "version": "==2.0.0"
         },
         "mypy-extensions": {
-            "hashes": [
-                "sha256:090fedd75945a69ae91ce1303b5824f428daf5a028d2f6ab8a299250a846f15d",
-                "sha256:2d82818f5bb3e369420cb3c4060a7970edba416647068eb4c5343488a6c604a8"
-            ],
-            "version": "==0.4.3"
+            "hashes": [],
+            "version": "==1.0.0"
         },
         "packaging": {
             "hashes": [],
@@ -111,7 +108,7 @@
     "develop": {
         "astroid": {
             "hashes": [],
-            "version": "==2.13.3"
+            "version": "==2.14.1"
         },
         "bandit": {
             "hashes": [
@@ -175,7 +172,7 @@
         },
         "pylint": {
             "hashes": [],
-            "version": "==2.15.10"
+            "version": "==2.16.1"
         },
         "pyparsing": {
             "hashes": [
@@ -187,7 +184,7 @@
         },
         "pytoolconfig": {
             "hashes": [],
-            "version": "==1.2.4"
+            "version": "==1.2.5"
         },
         "pyyaml": {
             "hashes": [
