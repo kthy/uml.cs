@@ -172,7 +172,7 @@
         },
         "pylint": {
             "hashes": [],
-            "version": "==2.16.1"
+            "version": "==2.16.2"
         },
         "pyparsing": {
             "hashes": [
