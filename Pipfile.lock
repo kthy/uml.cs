@@ -22,7 +22,7 @@
         },
         "black": {
             "hashes": [],
-            "version": "==23.1.0"
+            "version": "==23.3.0"
         },
         "click": {
             "hashes": [
