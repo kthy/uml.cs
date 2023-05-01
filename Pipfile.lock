@@ -42,7 +42,7 @@
         },
         "coverage": {
             "hashes": [],
-            "version": "==7.2.3"
+            "version": "==7.2.5"
         },
         "exceptiongroup": {
             "hashes": [],
