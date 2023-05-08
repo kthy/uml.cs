@@ -168,7 +168,7 @@
         },
         "pylint": {
             "hashes": [],
-            "version": "==2.17.3"
+            "version": "==2.17.4"
         },
         "pyparsing": {
             "hashes": [
@@ -230,7 +230,7 @@
         },
         "rope": {
             "hashes": [],
-            "version": "==1.7.0"
+            "version": "==1.8.0"
         },
         "smmap": {
             "hashes": [
