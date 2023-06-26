@@ -66,27 +66,19 @@
         },
         "platformdirs": {
             "hashes": [],
-            "version": "==3.5.1"
+            "version": "==3.8.0"
         },
         "pluggy": {
-            "hashes": [
-                "sha256:4224373bacce55f955a878bf9cfa763c1e360858e330072059e10bad68531159",
-                "sha256:74134bbf457f031a36d68416e1509f34bd5ccc019f0bcc952c7b909d06b37bd3"
-            ],
-            "markers": "python_version >= '3.6'",
-            "version": "==1.0.0"
+            "hashes": [],
+            "version": "==1.2.0"
         },
         "pyparsing": {
-            "hashes": [
-                "sha256:2b020ecf7d21b687f219b71ecad3631f644a47f01403fa1d1036b0c6416d70fb",
-                "sha256:5026bae9a10eeaefb61dab2f09052b9f4307d44aee4eda64b309723d8d206bbc"
-            ],
-            "markers": "python_full_version >= '3.6.8'",
-            "version": "==3.0.9"
+            "hashes": [],
+            "version": "==3.1.0"
         },
         "pytest": {
             "hashes": [],
-            "version": "==7.3.1"
+            "version": "==7.4.0"
         },
         "pytest-cov": {
             "hashes": [],
@@ -160,19 +152,15 @@
         },
         "platformdirs": {
             "hashes": [],
-            "version": "==3.5.1"
+            "version": "==3.8.0"
         },
         "pylint": {
             "hashes": [],
             "version": "==2.17.4"
         },
         "pyparsing": {
-            "hashes": [
-                "sha256:2b020ecf7d21b687f219b71ecad3631f644a47f01403fa1d1036b0c6416d70fb",
-                "sha256:5026bae9a10eeaefb61dab2f09052b9f4307d44aee4eda64b309723d8d206bbc"
-            ],
-            "markers": "python_full_version >= '3.6.8'",
-            "version": "==3.0.9"
+            "hashes": [],
+            "version": "==3.1.0"
         },
         "pytoolconfig": {
             "hashes": [],
