@@ -92,7 +92,7 @@
     "develop": {
         "astroid": {
             "hashes": [],
-            "version": "==2.15.5"
+            "version": "==2.15.6"
         },
         "bandit": {
             "hashes": [],
