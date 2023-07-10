@@ -62,7 +62,7 @@
         },
         "platformdirs": {
             "hashes": [],
-            "version": "==3.8.0"
+            "version": "==3.8.1"
         },
         "pluggy": {
             "hashes": [],
@@ -148,7 +148,7 @@
         },
         "platformdirs": {
             "hashes": [],
-            "version": "==3.8.0"
+            "version": "==3.8.1"
         },
         "pylint": {
             "hashes": [],
