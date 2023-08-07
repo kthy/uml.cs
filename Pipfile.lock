@@ -107,12 +107,8 @@
             "version": "==0.4.6"
         },
         "dill": {
-            "hashes": [
-                "sha256:a07ffd2351b8c678dfc4a856a3005f8067aea51d6ba6c700796a4d9e280f39f0",
-                "sha256:e5db55f3687856d8fbdab002ed78544e1c4559a130302693d839dfe8f93f2373"
-            ],
-            "markers": "python_version >= '3.7'",
-            "version": "==0.3.6"
+            "hashes": [],
+            "version": "==0.3.7"
         },
         "gitdb": {
             "hashes": [],
