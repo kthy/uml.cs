@@ -116,7 +116,7 @@
         },
         "gitpython": {
             "hashes": [],
-            "version": "==3.1.32"
+            "version": "==3.1.35"
         },
         "isort": {
             "hashes": [],
