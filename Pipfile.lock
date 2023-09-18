@@ -381,12 +381,8 @@
             "version": "==6.0.1"
         },
         "rich": {
-            "hashes": [
-                "sha256:146a90b3b6b47cac4a73c12866a499e9817426423f57c5a66949c086191a8808",
-                "sha256:fb9d6c0a0f643c99eed3875b5377a184132ba9be4d61516a55273d3554d75a39"
-            ],
-            "markers": "python_version >= '3.7'",
-            "version": "==13.5.2"
+            "hashes": [],
+            "version": "==13.5.3"
         },
         "rope": {
             "hashes": [
