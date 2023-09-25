@@ -164,12 +164,8 @@
     },
     "develop": {
         "astroid": {
-            "hashes": [
-                "sha256:389656ca57b6108f939cf5d2f9a2a825a3be50ba9d589670f393236e0a03b91c",
-                "sha256:903f024859b7c7687d7a7f3a3f73b17301f8e42dfd9cc9df9d4418172d3e2dbd"
-            ],
-            "markers": "python_full_version >= '3.7.2'",
-            "version": "==2.15.6"
+            "hashes": [],
+            "version": "==2.15.7"
         },
         "bandit": {
             "hashes": [
