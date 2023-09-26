@@ -164,12 +164,8 @@
     },
     "develop": {
         "astroid": {
-            "hashes": [
-                "sha256:389656ca57b6108f939cf5d2f9a2a825a3be50ba9d589670f393236e0a03b91c",
-                "sha256:903f024859b7c7687d7a7f3a3f73b17301f8e42dfd9cc9df9d4418172d3e2dbd"
-            ],
-            "markers": "python_full_version >= '3.7.2'",
-            "version": "==2.15.6"
+            "hashes": [],
+            "version": "==2.15.7"
         },
         "bandit": {
             "hashes": [
@@ -197,7 +193,7 @@
         },
         "gitpython": {
             "hashes": [],
-            "version": "==3.1.36"
+            "version": "==3.1.37"
         },
         "isort": {
             "hashes": [
@@ -306,12 +302,8 @@
             "version": "==2.16.1"
         },
         "pylint": {
-            "hashes": [
-                "sha256:73995fb8216d3bed149c8d51bba25b2c52a8251a2c8ac846ec668ce38fab5413",
-                "sha256:f7b601cbc06fef7e62a754e2b41294c2aa31f1cb659624b9a85bcba29eaf8252"
-            ],
-            "index": "pypi",
-            "version": "==2.17.5"
+            "hashes": [],
+            "version": "==2.17.6"
         },
         "pytoolconfig": {
             "extras": [
